@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DNA Explorer</title>
+<style>
+:root{--bg:#eef3f8;--card:#fff;--ink:#14243b;--mute:#5a6b82;--line:#cfd9e5;--P:#e8833a;--S:#3b82c4;--A:#d9483f;--T:#d49a1c;--G:#2a9468;--C:#7656c2;--bb:#8a9bb0;--ok:#2a9468;--bad:#d9483f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1a2b;--card:#17263d;--ink:#e6eef8;--mute:#9db0c8;--line:#2c4160;--bb:#5d7391}}
+:root[data-theme=dark]{--bg:#0f1a2b;--card:#17263d;--ink:#e6eef8;--mute:#9db0c8;--line:#2c4160;--bb:#5d7391}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Avenir Next","Segoe UI",Roboto,sans-serif}
+header{padding:18px 16px 0;max-width:880px;margin:auto}
+h1{margin:0;font-size:28px;letter-spacing:-.5px}
+header p{margin:2px 0 12px;color:var(--mute)}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+button{font:inherit;color:var(--ink);cursor:pointer}
+nav button{border:1px solid var(--line);background:var(--card);padding:8px 14px;border-radius:20px}
+nav button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+main{max-width:880px;margin:auto;padding:12px 16px 40px}
+section{display:none;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+section.on{display:block}
+h2{margin:0 0 4px;font-size:20px}
+.sub{color:var(--mute);margin:0 0 12px}
+svg{width:100%;height:auto;display:block}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.chip{border:1px solid var(--line);background:transparent;padding:5px 11px;border-radius:16px;font-size:14px}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.btn{border:1px solid var(--ink);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:8px}
+.btn.alt{background:transparent;color:var(--ink)}
+.info{background:var(--bg);border-left:4px solid var(--S);padding:10px 12px;border-radius:6px;min-height:48px}
+input[type=range]{flex:1;min-width:160px}
+.g{transition:opacity .2s}
+[data-f] .g{opacity:.12}
+[data-f=p] .p,[data-f=s] .s,[data-f=b] .b,[data-f=h] .h,[data-f=d] .d,[data-f=c] .c{opacity:1}
+.part{cursor:pointer;transition:filter .15s}
+.part:hover{filter:brightness(1.2)}
+.part.sel{stroke:var(--ink);stroke-width:4}
+.cell{display:inline-flex;flex-direction:column;align-items:center;width:44px}
+.bx{width:40px;height:40px;border-radius:8px;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;border:0}
+.slot{background:transparent;border:2px dashed var(--line);color:var(--ink)}
+.slot.cur{border-color:var(--ink)}
+.hb{height:30px;display:flex;gap:4px;align-items:center}
+.hb i{width:3px;height:22px;background:repeating-linear-gradient(var(--ink) 0 4px,transparent 4px 7px)}
+.shake{animation:sh .3s}
+@keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.strand{display:flex;align-items:center;gap:6px;overflow-x:auto}
+.end{font-weight:700;width:30px;text-align:center}
+.opts{display:grid;gap:8px;margin:10px 0}
+.opts button{text-align:left;padding:10px 12px;border:1px solid var(--line);background:var(--bg);border-radius:8px}
+.opts button.ok{background:var(--ok);color:#fff}.opts button.bad{background:var(--bad);color:#fff}
+.msg{min-height:26px;margin:8px 0;font-weight:600}
+.pc{padding:9px 14px;border-radius:8px;color:#fff;font-weight:700;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none}
+.pc.armed{transform:scale(1.1);filter:brightness(1.25)}
+.pc{display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px}
+.pc[data-k=phosphate]{width:76px;height:76px;border-radius:50%}
+.pc[data-k=sugar],.pc[data-k=ribose]{width:104px;height:96px;clip-path:polygon(50% 0,100% 38%,82% 100%,18% 100%,0 38%);padding-top:14px}
+.pc[data-k=base],.pc[data-k=uracil]{width:104px;height:60px}
+#az,#bsvg{max-width:640px;margin:auto}
+.slotg,#az [data-drop]{cursor:pointer}
+.az{display:flex;align-items:center;overflow-x:auto;padding:6px 0}
+.zone{flex:0 0 auto;min-width:112px;min-height:76px;border:2px dashed var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;font-size:14px;color:var(--mute)}
+.zone.full{border-style:solid;border-color:transparent;color:#fff;font-weight:700}
+.link{flex:0 0 36px;border-top:4px dashed var(--line)}.link.on{border-top:4px solid var(--ink)}
+.tile{border:1px solid var(--line);border-radius:10px;padding:4px 10px;background:var(--bg);cursor:grab;display:flex;flex-direction:column;align-items:center;font-size:12px;touch-action:none;user-select:none;-webkit-user-select:none}
+#sbx{background:var(--bg);border:1px dashed var(--line);border-radius:10px;touch-action:none}
+.sg{cursor:grab}
+@media (prefers-reduced-motion:reduce){.g,.part,.shake{transition:none;animation:none}}
+</style></head><body>
+<header><h1>DNA Explorer</h1><p>Unwind the helix, learn the parts, then build and test it yourself.</p>
+<nav role="tablist"><button role="tab" aria-selected="true" data-t="0">Helix</button><button role="tab" aria-selected="false" data-t="1">Nucleotide &amp; bonds</button><button role="tab" aria-selected="false" data-t="2">Build puzzle</button><button role="tab" aria-selected="false" data-t="4">Assemble</button><button role="tab" aria-selected="false" data-t="5">Sandbox</button><button role="tab" aria-selected="false" data-t="3">Test mode</button></nav></header>
+<main>
+<section id="s0" class="on"><h2>Unwind the double helix</h2><p class="sub">Click the helix or drag the slider to unwind it into a flat ladder.</p>
+<svg id="hx" viewBox="0 0 640 340" role="img" aria-label="DNA double helix"></svg>
+<div class="row"><span>Twisted</span><input id="sl" type="range" min="0" max="1" step="0.01" value="1" aria-label="Unwind"><span>Unwound</span></div>
+<div class="row" id="chips"><button class="chip" data-f="p">Phosphate</button><button class="chip" data-f="s">Deoxyribose</button><button class="chip" data-f="b">Bases</button><button class="chip" data-f="h">Hydrogen bonds</button><button class="chip" data-f="c">Covalent backbone</button><button class="chip" data-f="d">Direction</button></div>
+<div class="info" id="hinfo"></div>
+<div class="row"><button class="btn alt" id="rnd">New random sequence</button></div></section>
+
+<section id="s1"><h2>One nucleotide</h2><p class="sub">Click any part, bond or end to learn about it. Solid lines are covalent bonds.</p>
+<div id="nuc"></div><div class="info" id="ninfo">Select a part of the nucleotide.</div>
+<h2 style="margin-top:18px">Base pairs and hydrogen bonds</h2>
+<div class="row"><button class="chip" data-p="AT" aria-pressed="true">A – T</button><button class="chip" data-p="GC" aria-pressed="false">G – C</button></div>
+<div id="pair"></div><div class="info" id="pinfo"></div></section>
+
+<section id="s2"><h2>Build the complementary strand</h2><p class="sub">Drag a base from the palette onto a slot, or pick a slot and tap a base. Each must pair with the template base above it.</p>
+<svg id="bsvg" viewBox="0 0 620 300" role="img" aria-label="Template strand and new strand"></svg>
+<div class="row" id="pal"></div><div class="msg" id="bmsg"></div>
+<div class="row"><button class="btn alt" id="hint">Hint</button><button class="btn" id="again">New puzzle</button></div></section>
+
+<section id="s3"><h2>Test mode</h2><div id="tq"></div></section>
+
+<section id="s4"><h2>Assemble a nucleotide</h2><p class="sub">Drag each piece onto the matching spot. Some pieces belong to RNA, not DNA. You can also tap a piece, then tap a spot.</p>
+<svg id="az" viewBox="0 0 520 290" role="img" aria-label="Nucleotide assembly"></svg><div class="row" id="tray"></div><div class="msg" id="amsg"></div>
+<div class="row"><button class="btn" id="anew">New nucleotide</button></div></section>
+<section id="s5"><h2>Sandbox</h2><p class="sub">Drag nucleotides onto the canvas and see what you can build. Drag pieces to move them. Select a strand to flip, break apart or delete it.</p>
+<svg id="sbx" data-drop="sbx" viewBox="0 0 760 440" role="img" aria-label="Sandbox canvas"></svg>
+<div class="row" id="sbpal"></div>
+<div class="row"><button class="btn alt" id="sflip">Flip selected</button><button class="btn alt" id="ssplit">Break apart</button><button class="btn alt" id="sdel">Delete selected</button><button class="btn alt" id="sclr">Clear all</button></div>
+<div class="msg" id="smsg"></div><div class="info" id="sbinfo"></div>
+<p class="sub" style="margin-top:12px">Dark links are covalent phosphodiester bonds. Dashed lines are hydrogen bonds. Try this: 1) Join 4 nucleotides into a strand. 2) Build a partner strand below it so the bases pair. 3) Join two pieces that face opposite ways and see what happens.</p></section>
+</main>
+<script>
+const $=s=>document.querySelector(s),B={A:'T',T:'A',G:'C',C:'G'},BS=['A','T','G','C'];
+const NAME={A:'Adenine',T:'Thymine',G:'Guanine',C:'Cytosine'},HB=b=>'AT'.includes(b)?2:3;
+const rnd=a=>a[Math.random()*a.length|0],shuf=a=>[...a].sort(()=>Math.random()-.5);
+const rc=s=>[...s].reverse().map(x=>B[x]).join('');
+const FI={p:'Phosphate groups sit between sugars. Each one links the 3′ carbon of one sugar to the 5′ carbon of the next, and carries a negative charge.',s:'Deoxyribose is a five-carbon sugar. "Deoxy" means it lacks an –OH on carbon 2′. Sugars alternate with phosphates along each strand.',b:'The bases A, T, G and C face inward. Each base pairs only with its complement: A with T, G with C.',h:'Hydrogen bonds join the bases across the strands: 2 for A–T, 3 for G–C. Each one is weak, but together they hold the helix.',c:'The sugar–phosphate backbone is held together by strong covalent bonds (phosphodiester bonds), so each strand is a sturdy chain.',d:'The strands are antiparallel. Strand 1 runs 5′→3′ left to right; strand 2 runs 5′→3′ right to left.'};
+const FD='Click a label to spotlight one part of the molecule. Click again to show everything.';
+// ---------- tabs
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x==b));document.querySelectorAll('section').forEach((s,i)=>s.classList.toggle('on',i==b.dataset.t));if(b.dataset.t==3&&!Q.length)startTest()});
+// ---------- helix
+let seq='ATGCCGTAGC',t=1,tgt=1,focus=null,raf=0;
+function helix(){const N=seq.length,X=i=>50+i*60,cy=170,A=85,ph=x=>t*(x-50)/60*.62,Y1=x=>cy-A*Math.cos(ph(x)),Y2=x=>cy+A*Math.cos(ph(x));let s='';
+for(const f of[Y1,Y2]){let d='';for(let x=50;x<=50+(N-1)*60;x+=6)d+=(x==50?'M':'L')+x+' '+f(x).toFixed(1);s+=`<path class="g c" d="${d}" fill="none" stroke="var(--bb)" stroke-width="5" stroke-linecap="round"/>`}
+for(let i=0;i<N;i++){const x=X(i),c=Math.cos(ph(x)),y1=Y1(x),y2=Y2(x),m=8*c,a=seq[i],b=B[a],n=HB(a);
+s+=`<line class="g b" x1="${x}" y1="${y1}" x2="${x}" y2="${cy-m}" stroke="var(--${a})" stroke-width="18"/><line class="g b" x1="${x}" y1="${cy+m}" x2="${x}" y2="${y2}" stroke="var(--${b})" stroke-width="18"/>`;
+for(let k=0;k<n;k++){const xx=x+(k-(n-1)/2)*9;s+=`<line class="g h" x1="${xx}" y1="${cy-m}" x2="${xx}" y2="${cy+m}" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="3 3"/>`}
+if(Math.abs(c)>.5)s+=`<g class="g b" fill="#fff" font-weight="700" font-size="14" text-anchor="middle"><text x="${x}" y="${(y1+cy-m)/2+5}">${a}</text><text x="${x}" y="${(y2+cy+m)/2+5}">${b}</text></g>`}
+for(let i=0;i<N-1;i++){const x=X(i)+30;for(const f of[Y1,Y2])s+=`<g class="g p"><circle cx="${x}" cy="${f(x)}" r="8" fill="var(--P)"/><text x="${x}" y="${f(x)+3.5}" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">P</text></g>`}
+for(let i=0;i<N;i++){const x=X(i);for(const f of[Y1,Y2]){const y=f(x),p=[0,1,2,3,4].map(k=>[x+11*Math.sin(k*1.2566),y-11*Math.cos(k*1.2566)].map(v=>v.toFixed(1)).join(',')).join(' ');s+=`<polygon class="g s" points="${p}" fill="var(--S)"/>`}}
+const e=X(N-1),a1=Y1(50),a2=Y1(e),b1=Y2(50),b2=Y2(e);
+s+=`<g class="g d" font-weight="700" font-size="15" text-anchor="middle" fill="var(--ink)"><text x="14" y="${a1+5}">5′</text><text x="14" y="${b1+5}">3′</text><text x="${e+36}" y="${a2+5}">3′</text><text x="${e+36}" y="${Y2(e)+5}">5′</text><path d="M${e+8} ${a2-6}L${e+20} ${a2}L${e+8} ${a2+6}Z"/><path d="M42 ${b1-6}L30 ${b1}L42 ${b1+6}Z"/></g>`;
+$('#hx').innerHTML=s;$('#hx').dataset.f=focus||'';if(!focus)$('#hx').removeAttribute('data-f');$('#sl').value=t}
+function tick(){t+=(tgt-t)*.1;if(Math.abs(tgt-t)<.004)t=tgt;helix();raf=t!=tgt?requestAnimationFrame(tick):0}
+$('#hx').onclick=()=>{tgt=t>.5?0:1;cancelAnimationFrame(raf);tick()};
+$('#sl').oninput=e=>{cancelAnimationFrame(raf);t=tgt=+e.target.value;helix()};
+$('#chips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;focus=focus==b.dataset.f?null:b.dataset.f;document.querySelectorAll('#chips .chip').forEach(x=>x.setAttribute('aria-pressed',x.dataset.f==focus));$('#hinfo').textContent=focus?FI[focus]:FD;helix()};
+$('#rnd').onclick=()=>{seq=Array.from({length:10},()=>rnd(BS)).join('');helix()};
+$('#hinfo').textContent=FD;helix();
+// ---------- nucleotide
+const PI={phosphate:'Phosphate group: a phosphorus atom bonded to four oxygens. It is negatively charged and forms the link between nucleotides.',sugar:'Deoxyribose: a five-carbon sugar. Carbons are numbered 1′ to 5′. The base attaches at 1′, the phosphate at 5′, and the next nucleotide at 3′.',base:'Nitrogenous base (A, T, G or C). It carries the genetic information and pairs with a base on the opposite strand by hydrogen bonds.',glyco:'Glycosidic bond (covalent): joins carbon 1′ of the sugar to the base. Strong and stable.',ester:'Phosphoester bond (covalent): joins the phosphate to carbon 5′ of the sugar.',oh3:'Free 3′–OH end. The next nucleotide\'s phosphate bonds here, forming a phosphodiester bond (covalent). This is why strands grow 5′→3′.'};
+function nuc(){return`<svg viewBox="0 0 520 290" id="nsvg" role="img" aria-label="Nucleotide structure"><g stroke="var(--ink)" stroke-width="5" stroke-linecap="round"><line x1="140" y1="112" x2="190" y2="140" stroke-width="4"/><line x1="210" y1="205" x2="210" y2="246" stroke-width="4"/><line class="part" data-part="ester" x1="84" y1="92" x2="140" y2="112"/><line class="part" data-part="glyco" x1="310" y1="140" x2="382" y2="140"/></g>
+<polygon class="part" data-part="sugar" points="250,95 310,140 290,205 210,205 190,140" fill="var(--S)"/>
+<circle class="part" data-part="phosphate" cx="60" cy="88" r="26" fill="var(--P)"/>
+<rect class="part" data-part="base" x="380" y="108" width="110" height="64" rx="10" fill="var(--A)"/>
+<circle class="part" data-part="oh3" cx="210" cy="264" r="18" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+<g fill="#fff" font-weight="700" font-size="15" text-anchor="middle" pointer-events="none"><text x="60" y="94" font-size="20">P</text><text x="435" y="146">Base</text><text x="250" y="118" font-size="12">O</text><text x="300" y="150" font-size="12">1′</text><text x="278" y="196" font-size="12">2′</text><text x="222" y="196" font-size="12">3′</text><text x="204" y="152" font-size="12">4′</text></g>
+<g fill="var(--ink)" font-size="13" text-anchor="middle" pointer-events="none"><text x="140" y="102">5′C</text><text x="210" y="269" font-weight="700">OH</text><text x="60" y="130">phosphate</text><text x="250" y="238">deoxyribose</text><text x="345" y="128" font-size="11">glycosidic</text></g></svg>`}
+function bindNuc(el,fn){el.querySelectorAll('.part').forEach(p=>p.onclick=()=>fn(p.dataset.part,p))}
+$('#nuc').innerHTML=nuc();
+bindNuc($('#nuc'),(k,p)=>{document.querySelectorAll('#nuc .part').forEach(x=>x.classList.toggle('sel',x==p));$('#ninfo').textContent=PI[k]});
+function pair(k){const a=k[0],b=k[1],n=HB(a);let l='';for(let j=0;j<n;j++){const y=55+(j-(n-1)/2)*20;l+=`<line x1="196" y1="${y}" x2="324" y2="${y}" stroke="var(--ink)" stroke-width="3" stroke-dasharray="7 5"/>`}
+$('#pair').innerHTML=`<svg viewBox="0 0 520 120"><rect x="40" y="20" width="156" height="70" rx="10" fill="var(--${a})"/><rect x="324" y="20" width="156" height="70" rx="10" fill="var(--${b})"/>${l}<g fill="#fff" font-weight="700" font-size="17" text-anchor="middle"><text x="118" y="61">${NAME[a]}</text><text x="402" y="61">${NAME[b]}</text></g><text x="260" y="112" text-anchor="middle" fill="var(--ink)" font-size="14">${n} hydrogen bonds (dashed)</text></svg>`;
+$('#pinfo').textContent=`${NAME[a]} and ${NAME[b]} form ${n} hydrogen bonds. Hydrogen bonds are weak one at a time, so the strands can unzip for copying. Covalent bonds in the backbone are strong, so each strand stays intact. G–C pairs (3 bonds) are held more tightly than A–T pairs (2 bonds).`}
+document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-p]').forEach(x=>x.setAttribute('aria-pressed',x==b));pair(b.dataset.p)});pair('AT');
+// ---------- build
+let tpl=[],fl=[],cur=0,mis=0;
+function newPuz(){tpl=Array.from({length:8},()=>rnd(BS));fl=Array(8).fill(null);cur=0;mis=0;$('#bmsg').textContent='Choose a base for the highlighted slot.';buildR()}
+const PG=(x,y,r,f)=>[0,1,2,3,4].map(k=>[x+r*Math.sin(k*1.2566),y-f*r*Math.cos(k*1.2566)].map(v=>v.toFixed(1)).join(',')).join(' ');
+function buildR(){const cx=i=>56+i*72,n=tpl.length;let o='';
+const bb=y=>`<line x1="${cx(0)-38}" y1="${y}" x2="${cx(n-1)}" y2="${y}" stroke="var(--bb)" stroke-width="5" stroke-linecap="round"/>`;
+o+=bb(52)+bb(250);
+tpl.forEach((b,i)=>{const x=cx(i),f=fl[i];
+o+=`<circle cx="${x-36}" cy="52" r="9" fill="var(--P)"/><circle cx="${x-36}" cy="250" r="9" fill="var(--P)"/>`;
+o+=`<rect x="${x-17}" y="72" width="34" height="62" rx="6" fill="var(--${b})"/><line x1="${x}" y1="52" x2="${x}" y2="72" stroke="var(--ink)" stroke-width="4"/><polygon points="${PG(x,52,16,1)}" fill="var(--S)"/>`;
+o+=`<line x1="${x}" y1="228" x2="${x}" y2="250" stroke="var(--ink)" stroke-width="4"/><polygon points="${PG(x,250,16,-1)}" fill="var(--S)"/>`;
+if(f)for(let k=0;k<HB(b);k++){const xx=x+(k-(HB(b)-1)/2)*8;o+=`<line x1="${xx}" y1="138" x2="${xx}" y2="170" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="3 3"/>`}
+o+=`<g class="slotg" data-i="${i}" data-drop="slot" tabindex="0" role="button" aria-label="Slot ${i+1}"><rect x="${x-17}" y="172" width="34" height="62" rx="6" ${f?`fill="var(--${f})"`:`fill="var(--bg)" stroke="var(--${i==cur?'ink':'line'})" stroke-width="${i==cur?3:2}" stroke-dasharray="6 4"`}/><text x="${x}" y="209" text-anchor="middle" font-weight="700" font-size="16" fill="${f?'#fff':'var(--mute)'}">${f||'?'}</text></g>`;
+o+=`<text x="${x}" y="109" text-anchor="middle" font-weight="700" font-size="16" fill="#fff" pointer-events="none">${b}</text>`});
+o+=`<g font-weight="700" font-size="14" fill="var(--ink)" text-anchor="middle"><text x="12" y="30">5′</text><text x="608" y="30">3′</text><text x="12" y="282">3′</text><text x="608" y="282">5′</text></g><g font-size="12" fill="var(--mute)"><text x="${cx(0)-38}" y="298">pentagon = deoxyribose, orange = phosphate</text></g>`;
+$('#bsvg').innerHTML=o;
+$('#bsvg').querySelectorAll('.slotg').forEach(g=>{const act=()=>{if(!fl[g.dataset.i]){cur=+g.dataset.i;buildR()}};g.onclick=act;g.onkeydown=e=>{if(e.key=='Enter'||e.key==' ')act()}})}
+$('#pal').innerHTML=BS.map(b=>`<button class="bx" style="background:var(--${b});width:56px" data-b="${b}">${b}</button>`).join('');
+function place(x){if(fl[cur]||fl.every(Boolean))return;const w=tpl[cur];
+if(x==B[w]){fl[cur]=x;const nx=fl.findIndex(v=>!v);cur=nx<0?cur:nx;$('#bmsg').textContent=`Correct: ${w}–${x} share ${HB(w)} hydrogen bonds.`;
+if(nx<0)$('#bmsg').textContent=`Complete with ${mis} mistake${mis==1?'':'s'}! Read 5′→3′ (right to left), your strand is ${[...fl].reverse().join('')}.`}
+else{mis++;$('#bmsg').textContent=`Not quite. ${w} makes ${HB(w)} hydrogen bonds with its partner.`;buildR();const s=$('#bsvg').querySelector(`[data-i="${cur}"]`);s.classList.add('shake');return}buildR()}
+$('#pal').onclick=e=>{const b=e.target.closest('[data-b]');if(b)place(b.dataset.b)};
+$('#hint').onclick=()=>{if(fl.every(Boolean))return;const w=tpl[cur];$('#bmsg').textContent=`Purines (A, G) pair with pyrimidines (T, C). ${w} needs a partner that forms ${HB(w)} hydrogen bonds.`};
+$('#again').onclick=newPuz;newPuz();
+// ---------- drag and drop (pointer events: works with mouse, touch and pen)
+function drag(el,fn){el.style.touchAction='none';el.addEventListener('pointerdown',e=>{if(e.button)return;e.preventDefault();const g=el.cloneNode(true);g.style.cssText+=';position:fixed;pointer-events:none;z-index:9;opacity:.85;margin:0;width:'+el.offsetWidth+'px';document.body.append(g);
+const mv=v=>{g.style.left=v.clientX-g.offsetWidth/2+'px';g.style.top=v.clientY-20+'px'};mv(e);
+const up=v=>{removeEventListener('pointermove',mv);g.remove();const t=document.elementFromPoint(v.clientX,v.clientY),d=t&&t.closest('[data-drop]');if(d)fn(d,v)};
+addEventListener('pointermove',mv);addEventListener('pointerup',up,{once:true});addEventListener('pointercancel',up,{once:true})})}
+document.querySelectorAll('#pal [data-b]').forEach(b=>drag(b,d=>{if(d.dataset.drop=='slot'&&!fl[d.dataset.i]){cur=+d.dataset.i;place(b.dataset.b)}}));
+// ---------- assemble a nucleotide
+let asm;
+const ZN=[['phosphate','Phosphate','5′ carbon'],['sugar','Deoxyribose','center'],['base','Base','1′ carbon']];
+function asmNew(){const b=rnd(BS);asm={sel:null,done:{},pcs:shuf([{k:'phosphate',l:'Phosphate',c:'P'},{k:'sugar',l:'Deoxyribose',c:'S'},{k:'base',l:NAME[b],c:b},{k:'ribose',l:'Ribose',c:'S'},{k:'uracil',l:'Uracil',c:'bb'}])};$('#amsg').textContent='Build a DNA nucleotide: phosphate, deoxyribose and a base.';asmR()}
+function asmDrop(k,z){const p=asm.pcs.find(x=>x.k==k);if(!p||asm.done[z])return;let m='';
+if(k==z||(k=='sugar'&&z=='sugar')){asm.done[z]=p;asm.sel=null;m=Object.keys(asm.done).length==3?'Assembled! The phosphoester bond (5′ C to phosphate) and the glycosidic bond (1′ C to base) are covalent. The free 3′–OH will bond to the next nucleotide\'s phosphate.':`${p.l} fits here.`}
+else{m=k=='ribose'?'Ribose has an extra –OH on carbon 2′, which makes RNA. DNA uses deoxyribose.':k=='uracil'?'Uracil is an RNA base. DNA uses A, T, G and C.':`${p.l} doesn't go there. The phosphate bonds to 5′, the base to 1′.`;const e=$('#az').querySelector(`[data-z=${z}]`);e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake')}
+$('#amsg').textContent=m;if(k==z)asmR(0,m)}
+function asmR(_,keep){const d=asm.done,P=d.phosphate,S=d.sugar,Bs=d.base;
+const L=(x1,y1,x2,y2,on)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${on?'var(--ink)':'var(--line)'}" stroke-width="5" stroke-linecap="round"${on?'':' stroke-dasharray="3 9"'}/>`;
+const st=p=>p?'stroke="none"':'stroke="var(--ink)" stroke-width="2" stroke-dasharray="6 5"',fi=p=>p?`var(--${p.c})`:'var(--bg)';
+let o=L(84,92,140,112,P&&S)+L(140,112,190,140,S)+L(310,140,382,140,S&&Bs)+L(210,205,210,246,S);
+o+=`<circle data-drop="z" data-z="phosphate" cx="60" cy="88" r="26" fill="${fi(P)}" ${st(P)}/><polygon data-drop="z" data-z="sugar" points="250,95 310,140 290,205 210,205 190,140" fill="${fi(S)}" ${st(S)}/><rect data-drop="z" data-z="base" x="380" y="108" width="110" height="64" rx="10" fill="${fi(Bs)}" ${st(Bs)}/><circle cx="210" cy="264" r="18" fill="var(--bg)" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 4"/>`;
+const T=(x,y,t,c)=>`<text x="${x}" y="${y}" text-anchor="middle" font-size="13" font-weight="700" fill="${c}" pointer-events="none">${t}</text>`,m='var(--mute)',w='#fff';
+o+=T(60,93,P?'P':'Phosphate',P?w:m)+T(250,172,S?'Deoxyribose':'Sugar',S?w:m)+T(435,145,Bs?Bs.l:'Base',Bs?w:m)+T(210,269,'OH',m)+T(210,292,'3′ end',m)+T(60,128,'5′ side',m)+T(435,196,'attaches at 1′ carbon',m);
+if(S)o+=['1′@300,150','2′@278,196','3′@222,196','4′@204,152','5′C@140,102'].map(q=>{const[t,c]=q.split('@'),[x,y]=c.split(',');return T(x,y,t,t=='5′C'?'var(--ink)':w)}).join('');
+$('#az').innerHTML=o;
+$('#tray').innerHTML=asm.pcs.filter(p=>!Object.values(d).includes(p)).map(p=>`<div class="pc ${asm.sel==p.k?'armed':''}" data-k="${p.k}" style="background:var(--${p.c})">${p.l}</div>`).join('');
+$('#tray').querySelectorAll('.pc').forEach(el=>{drag(el,t=>{if(t.dataset.drop=='z')asmDrop(el.dataset.k,t.dataset.z)});el.onclick=()=>{asm.sel=asm.sel==el.dataset.k?null:el.dataset.k;asmR(0,1)}});
+$('#az').querySelectorAll('[data-z]').forEach(el=>el.onclick=()=>{if(asm.sel)asmDrop(asm.sel,el.dataset.z)});
+if(keep&&keep!==1)$('#amsg').textContent=keep}
+$('#anew').onclick=asmNew;asmNew();
+// ---------- test
+let Q=[],qi=0,sc=0;
+function startTest(){const t4=Array.from({length:4},()=>rnd(BS)).join(''),b1=rnd(BS),b2=rnd(BS),pr=rnd(['AT','GC']);
+const mc=(q,a,o,ex)=>({q,a,o:shuf(o),ex});
+const cl=(k,q)=>({q,click:k,ex:PI[k]});
+const dd=new Set([rc(t4),[...t4].map(x=>B[x]).join(''),[...t4].reverse().join(''),t4]);
+const pool=[mc(`Which base pairs with ${NAME[b1]} (${b1})?`,B[b1],BS,`${b1} pairs with ${B[b1]}.`),mc(`Which base pairs with ${NAME[b2]} (${b2})?`,B[b2],BS,`${b2} pairs with ${B[b2]}.`),
+mc(`How many hydrogen bonds join ${pr[0]} and ${pr[1]}?`,String(HB(pr[0])),['1','2','3','4'],'A–T has 2 hydrogen bonds; G–C has 3.'),
+mc('Which covalent bond links neighboring nucleotides along one strand?','Phosphodiester bond',['Phosphodiester bond','Hydrogen bond','Ionic bond','Peptide bond'],'The phosphodiester bond joins the 3′ carbon of one sugar to the next phosphate.'),
+mc('Which bond holds the two strands together?','Hydrogen bonds',['Hydrogen bonds','Phosphodiester bonds','Glycosidic bonds','Peptide bonds'],'Hydrogen bonds link complementary bases across the strands.'),
+cl('phosphate','Click the phosphate group.'),cl('sugar','Click the deoxyribose sugar.'),cl('base','Click the nitrogenous base.'),cl('glyco','Click the glycosidic bond between sugar and base.'),cl('oh3','Click the 3′ end where the next nucleotide attaches.'),
+mc(`A template strand reads 5′-${t4}-3′. What does the complementary strand read 5′→3′?`,rc(t4),[...dd],'Pair each base, then reverse the order because the strands are antiparallel.'),
+mc('How do the two strands run relative to each other?','Antiparallel',['Antiparallel','Parallel','Perpendicular','Randomly'],'One strand runs 5′→3′ while the other runs 3′→5′.'),
+mc('Which end of a strand has a free phosphate group?','5′ end',['5′ end','3′ end','Both ends','Neither end'],'The 5′ end carries the phosphate; the 3′ end has a free –OH.')];
+Q=shuf(pool).slice(0,10);qi=0;sc=0;showQ()}
+function showQ(){const q=Q[qi],el=$('#tq');if(!q){el.innerHTML=`<p style="font-size:20px"><b>Score: ${sc} / ${Q.length}</b></p><p class="sub">${sc>=9?'Excellent work.':sc>=6?'Good. Review the helix and nucleotide tabs, then try again.':'Explore the Helix and Nucleotide tabs, then retake the test.'}</p><button class="btn" id="re">Try new questions</button>`;$('#re').onclick=startTest;return}
+el.innerHTML=`<p class="sub">Question ${qi+1} of ${Q.length}</p><p><b>${q.q}</b></p>${q.click?nuc():`<div class="opts">${q.o.map(o=>`<button>${o}</button>`).join('')}</div>`}<div class="info" id="fb" hidden></div><div class="row"><button class="btn" id="nx" hidden>${qi==Q.length-1?'See score':'Next'}</button></div>`;
+let done=0;const fin=ok=>{if(done)return;done=1;sc+=ok;const f=$('#fb');f.hidden=false;f.style.borderColor=ok?'var(--ok)':'var(--bad)';f.textContent=(ok?'Correct. ':'Not quite. ')+q.ex;$('#nx').hidden=false;$('#nx').onclick=()=>{qi++;showQ()}};
+if(q.click)bindNuc(el,(k,p)=>{p.classList.add('sel');fin(k==q.click?1:0)});
+else el.querySelectorAll('.opts button').forEach(b=>b.onclick=()=>{if(done)return;const ok=b.textContent==q.a;b.classList.add(ok?'ok':'bad');if(!ok)[...el.querySelectorAll('.opts button')].find(x=>x.textContent==q.a).classList.add('ok');fin(ok?1:0)})}
+let Qinit=0;
+
+// ---------- sandbox
+let SB=[],sbSel=null,sbId=0;const SW=54,GAP=190,SC=$('#sbx');
+const disp=s=>s.f?[...s.q].reverse().join(''):s.q,selS=()=>SB.find(s=>s.id==sbSel),sbMsg=t=>$('#smsg').textContent=t;
+const sbPt=e=>{const r=SC.getBoundingClientRect(),v=SC.viewBox.baseVal;return[(e.clientX-r.left)*v.width/r.width,(e.clientY-r.top)*v.height/r.height]};
+function sbAdd(b,x,y){SB.push({id:++sbId,q:b,x:Math.max(14,x),y:Math.min(380,Math.max(100,y)),f:0});sbSel=sbId;sbR()}
+function sbR(){let o='',st={at:0,gc:0,mm:0};
+SB.forEach(s=>{const d=disp(s),n=d.length,f=s.f,x0=s.x,y0=s.y;
+o+=`<g class="sg" data-id="${s.id}"><rect x="${x0-16}" y="${f?y0-92:y0-26}" width="${n*SW+32}" height="118" rx="10" fill="transparent" ${s.id==sbSel?'stroke="var(--ink)" stroke-dasharray="5 4" stroke-width="1.5"':'stroke="none"'}/><line x1="${x0}" y1="${y0}" x2="${x0+n*SW}" y2="${y0}" stroke="var(--bb)" stroke-width="3"/>`;
+for(let k=0;k<n-1;k++){const j=f?n-1-k:k,x1=f?x0+(j-1)*SW+SW-2:x0+j*SW+SW/2,x2=f?x0+j*SW+SW/2:x0+(j+1)*SW+2;o+=`<line x1="${x1}" y1="${y0}" x2="${x2}" y2="${y0}" stroke="var(--ink)" stroke-width="6" stroke-linecap="round"/>`}
+for(let j=0;j<n;j++){const cx=x0+j*SW+SW/2,px=f?cx+SW/2-2:cx-SW/2+2,b=d[j],by=f?y0-82:y0+22;
+o+=`<line x1="${cx}" y1="${y0}" x2="${cx}" y2="${f?y0-22:y0+22}" stroke="var(--ink)" stroke-width="4"/><rect x="${cx-15}" y="${by}" width="30" height="60" rx="6" fill="var(--${b})"/><text x="${cx}" y="${by+36}" text-anchor="middle" font-weight="700" font-size="16" fill="#fff">${b}</text><circle cx="${px}" cy="${y0}" r="8" fill="var(--P)"/><polygon points="${PG(cx,y0,15,f?-1:1)}" fill="var(--S)"/>`}
+o+=`<g font-weight="700" font-size="13" fill="var(--ink)"><text x="${f?x0+n*SW+6:x0-12}" y="${y0+5}" text-anchor="${f?'start':'end'}">5′</text><text x="${f?x0-12:x0+n*SW+6}" y="${y0+5}" text-anchor="${f?'end':'start'}">3′</text></g></g>`});
+SB.forEach(a=>{if(a.f)return;SB.forEach(b=>{if(!b.f||Math.abs(b.y-a.y-GAP)>14)return;const off=Math.round((b.x-a.x)/SW);if(Math.abs(b.x-a.x-off*SW)>10)return;const da=disp(a),db=disp(b);
+for(let i=0;i<da.length;i++){const j=i-off;if(j<0||j>=db.length)continue;const x=a.x+i*SW+SW/2;
+if(B[da[i]]==db[j]){const n=HB(da[i]);n==2?st.at++:st.gc++;for(let k=0;k<n;k++){const xx=x+(k-(n-1)/2)*8;o+=`<line x1="${xx}" y1="${a.y+86}" x2="${xx}" y2="${b.y-86}" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="3 3"/>`}}
+else{st.mm++;o+=`<text x="${x}" y="${a.y+(GAP-4)/2+6}" text-anchor="middle" font-size="22" font-weight="700" fill="var(--bad)">×</text>`}}})});
+SC.innerHTML=o||'<text x="380" y="220" text-anchor="middle" fill="var(--mute)" font-size="18">Drag a nucleotide here</text>';
+$('#sbinfo').innerHTML=SB.length?SB.map(s=>`5′-${s.q}-3′: ${s.q.length-1} phosphodiester bond(s)`).join('<br>')+`<br>${st.at} A–T pair(s), ${st.gc} G–C pair(s): ${st.at*2+st.gc*3} hydrogen bonds`+(st.mm?`<br>${st.mm} mismatch(es): no hydrogen bonds there`:''):'Nothing here yet. Drag a nucleotide onto the canvas.';
+return st}
+SC.addEventListener('pointerdown',e=>{const g=e.target.closest('.sg');if(!g)return;e.preventDefault();const s=SB.find(x=>x.id==g.dataset.id),[px,py]=sbPt(e),dx=s.x-px,dy=s.y-py;let mvd=0;sbSel=s.id;
+const mv=v=>{const[x,y]=sbPt(v);s.x=x+dx;s.y=y+dy;mvd=1;sbR()};
+addEventListener('pointermove',mv);addEventListener('pointerup',()=>{removeEventListener('pointermove',mv);mvd?sbDrop(s):sbR()},{once:true});sbR()});
+function sbDrop(s){const n=disp(s).length;s.x=Math.min(Math.max(s.x,16),760-n*SW-16);s.y=Math.min(Math.max(s.y,100),380);let m='';
+for(const o of SB){if(o===s)continue;const L=s.x<=o.x?s:o,R=L===s?o:s,ln=disp(L).length;
+if(Math.abs(R.x-(L.x+ln*SW))<28&&Math.abs(R.y-L.y)<28){
+if(L.f==R.f){L.q=L.f?R.q+L.q:L.q+R.q;SB=SB.filter(z=>z!==R);sbSel=L.id;sbR();sbMsg(`Phosphodiester bond formed (covalent). The strand now reads 5′-${L.q}-3′.`);return}
+m='These pieces run in opposite directions, so they cannot be joined end to end. Flip one, then try again.'}}
+if(!m)for(const o of SB){if(o===s||o.f==s.f)continue;const a=s.f?o:s,b=s.f?s:o,la=disp(a).length,lb=disp(b).length;if(Math.abs(b.y-a.y-GAP)>45)continue;const off=Math.round((b.x-a.x)/SW);if(Math.abs(b.x-a.x-off*SW)>27||off>la-1||off<-(lb-1))continue;
+if(s===b){b.x=a.x+off*SW;b.y=a.y+GAP}else{a.x=b.x-off*SW;a.y=b.y-GAP}m='SNAP';break}
+if(!m)for(const o of SB){if(o!==s&&o.f==s.f&&Math.abs(o.y-s.y)>60&&Math.abs(o.y-s.y)<260&&Math.abs(o.x-s.x)<disp(o).length*SW){m='Both strands have their bases pointing the same way, so they cannot pair. Flip one so the bases face each other.';break}}
+const st=sbR();if(m=='SNAP')m=st.mm?'Mismatch: those bases cannot form hydrogen bonds. A pairs with T and G pairs with C.':st.at+st.gc?'Complementary! Hydrogen bonds hold the pairs together, and the strands run in opposite directions (antiparallel).':'Slide the strands so some bases line up.';sbMsg(m)}
+$('#sflip').onclick=()=>{const s=selS();if(!s)return sbMsg('Select a strand first.');s.f=s.f?0:1;sbR();sbMsg('Flipped: the 5′ and 3′ ends swapped sides.')};
+$('#ssplit').onclick=()=>{const s=selS();if(!s||s.q.length<2)return sbMsg('Select a strand with two or more nucleotides.');const d=disp(s);SB=SB.filter(z=>z!==s);[...d].forEach((b,i)=>SB.push({id:++sbId,q:b,x:s.x+i*(SW+10),y:s.y,f:s.f}));sbSel=null;sbR();sbMsg('Backbone bonds broken. Enzymes can do this in cells.')};
+$('#sdel').onclick=()=>{SB=SB.filter(z=>z.id!=sbSel);sbSel=null;sbR();sbMsg('')};
+$('#sclr').onclick=()=>{SB=[];sbSel=null;sbR();sbMsg('')};
+$('#sbpal').innerHTML=BS.map(b=>`<div class="tile" data-b="${b}"><svg viewBox="0 0 60 66" width="44"><rect x="21" y="26" width="18" height="36" rx="4" fill="var(--${b})"/><line x1="30" y1="14" x2="30" y2="26" stroke="var(--ink)" stroke-width="3"/><circle cx="8" cy="14" r="6" fill="var(--P)"/><polygon points="${PG(30,14,11,1)}" fill="var(--S)"/><text x="30" y="49" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">${b}</text></svg>${NAME[b]}</div>`).join('');
+document.querySelectorAll('#sbpal .tile').forEach(t=>{const b=t.dataset.b;drag(t,(d,v)=>{if(d.id=='sbx'){const[x,y]=sbPt(v);sbAdd(b,x-SW/2,y-20);sbMsg('')}});t.onclick=()=>sbAdd(b,40+Math.random()*320,110+Math.random()*220)});
+sbR();
+</script></body></html>
