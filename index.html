@@ -35,7 +35,7 @@ input[type=range]{flex:1;min-width:160px}
 [data-f=p] .p,[data-f=s] .s,[data-f=b] .b,[data-f=h] .h,[data-f=d] .d,[data-f=c] .c{opacity:1}
 .part{cursor:pointer;transition:filter .15s}
 .part:hover{filter:brightness(1.2)}
-.part.sel{stroke:var(--ink);stroke-width:4}
+.part.sel{filter:drop-shadow(0 0 4px var(--ink))}
 .cell{display:inline-flex;flex-direction:column;align-items:center;width:44px}
 .bx{width:40px;height:40px;border-radius:8px;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;border:0}
 .slot{background:transparent;border:2px dashed var(--line);color:var(--ink)}
@@ -56,7 +56,7 @@ input[type=range]{flex:1;min-width:160px}
 .pc[data-k=phosphate]{width:76px;height:76px;border-radius:50%}
 .pc[data-k=sugar],.pc[data-k=ribose]{width:104px;height:96px;clip-path:polygon(50% 0,100% 38%,82% 100%,18% 100%,0 38%);padding-top:14px}
 .pc[data-k=base],.pc[data-k=uracil]{width:104px;height:60px}
-#az,#bsvg{max-width:640px;margin:auto}
+#az{max-width:640px;margin:auto}#bsvg{max-width:420px;margin:auto}#hx{max-width:440px;margin:auto}#sbx{max-width:560px;margin:auto}
 .slotg,#az [data-drop]{cursor:pointer}
 .az{display:flex;align-items:center;overflow-x:auto;padding:6px 0}
 .zone{flex:0 0 auto;min-width:112px;min-height:76px;border:2px dashed var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;font-size:14px;color:var(--mute)}
@@ -65,26 +65,67 @@ input[type=range]{flex:1;min-width:160px}
 .tile{border:1px solid var(--line);border-radius:10px;padding:4px 10px;background:var(--bg);cursor:grab;display:flex;flex-direction:column;align-items:center;font-size:12px;touch-action:none;user-select:none;-webkit-user-select:none}
 #sbx{background:var(--bg);border:1px dashed var(--line);border-radius:10px;touch-action:none}
 .sg{cursor:grab}
+#p51{max-width:340px;margin:auto}.pg{transition:opacity .2s,filter .2s}
+#p51[data-h] .pg{opacity:.18}#p51[data-h=x] .px,#p51[data-h=l] .pl,#p51[data-h=a] .pa{opacity:1;filter:drop-shadow(0 0 6px #ffd166)}
+#chBar div{display:flex;align-items:center;justify-content:center;transition:width .2s}
+:root{--U:#c2569b}
+.hs{fill:transparent;cursor:pointer}.hs:hover{fill:rgba(255,209,102,.25)}
+.hs[data-s=m]{fill:rgba(255,209,102,.4);stroke:#e0a100;stroke-width:3}
+.hs[data-s=ok]{fill:rgba(46,160,67,.3);stroke:var(--ok);stroke-width:3}
+.hs[data-s=no]{fill:rgba(220,60,60,.3);stroke:var(--bad);stroke-width:3}
+.hs[data-s=miss]{fill:none;stroke:var(--bad);stroke-width:3;stroke-dasharray:5 4}
+#spsvg{max-width:420px;margin:auto}
+#spex ul{margin:6px 0;padding-left:20px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cbox{border:1px solid var(--line);border-radius:10px;padding:8px}
+.cbox h3,#sortq{margin:0 0 4px;font-size:16px}
+.cbox svg{max-width:200px;margin:auto}
+.cmp .cg{transition:opacity .2s}
+.cmp[data-h] .cg{opacity:.15}
+.cmp[data-h=sugar] .cs,.cmp[data-h=strands] .c2,.cmp[data-h=bases] .cb{opacity:1}
+.cmp[data-h=sugar] .cs polygon{stroke-width:3}
+@media (max-width:520px){.cols{grid-template-columns:1fr}}
+.steps{margin:0 0 8px;padding-left:20px;color:var(--mute)}.steps li.now{color:var(--ink);font-weight:700}.steps li.done{text-decoration:line-through}
+#trsvg,#tlsvg{max-width:600px;margin:auto}
+.trna{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:13px}
+.trna .t{display:inline-block;width:24px;height:26px;line-height:26px;text-align:center;color:#fff;font-weight:700;border-radius:4px;margin:0 1px}
+.ctab{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}.ctab span{border:1px solid var(--line);border-radius:8px;padding:4px 8px;font-size:13px}
+.cdn{display:inline-flex;flex-direction:column;gap:6px;align-items:center;padding:6px;border:1px solid var(--line);border-radius:10px}
+.cdn select{font:inherit;font-size:13px;background:var(--bg);color:var(--ink);border:2px solid var(--line);border-radius:6px;padding:3px}
+.cdn select.ok{border-color:var(--ok)}.cdn select.bad{border-color:var(--bad)}
+.cdt{border-collapse:separate;border-spacing:4px;min-width:600px;width:100%;font-size:13px}
+.cdt td{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 8px;vertical-align:top}
+.cdt th{color:#222;border-radius:6px;font-size:18px;padding:4px}.cdt .t1{background:#f6b49a}.cdt .t2{background:#9ad28c;width:36px}
+.cdt td.t3{background:#8fd3d0;color:#222;font-weight:700;font-size:16px;text-align:center;width:36px;padding:6px 4px}
+.cdt .cds div,.cdt td.t3 div{height:20px;line-height:20px}
+.cgp{display:flex;align-items:center;gap:8px}.cgp .aan{line-height:1.15}.cgp .cds{align-self:stretch}.cds{font-weight:700;letter-spacing:1px;border-right:2px solid var(--mute);padding-right:6px}
+.cdt i{font-style:normal}.cdt .k0{color:#5fb37b}.cdt .k1{color:#4ba3a6}.cdt .k2{color:#e8a05c}
+.aan.stp{color:var(--bad);font-weight:700}.abv{font-size:12px;color:var(--mute);font-weight:600}
+.pct{border-collapse:separate;border-spacing:2px 6px}.pct th{text-align:left;font-size:12px;color:var(--mute);white-space:nowrap;padding-right:8px;font-weight:600}.pct td{padding:0}.pct td.cf{padding-left:10px}
+.bi{width:28px;height:28px;text-align:center;font:700 14px "Avenir Next","Segoe UI",Roboto,sans-serif;border:2px dashed var(--line);border-radius:6px;background:var(--bg);color:var(--ink);padding:0}
+.bi.ok{border:2px solid var(--ok)}.bi.bad{border:2px solid var(--bad)}
+.pct select.ok{border-color:var(--ok)}.pct select.bad{border-color:var(--bad)}
+.pct select{font:inherit;font-size:13px;background:var(--bg);color:var(--ink);border:2px solid var(--line);border-radius:6px;padding:3px;width:96px}
 @media (prefers-reduced-motion:reduce){.g,.part,.shake{transition:none;animation:none}}
 </style></head><body>
 <header><h1>DNA Explorer</h1><p>Unwind the helix, learn the parts, then build and test it yourself.</p>
-<nav role="tablist"><button role="tab" aria-selected="true" data-t="0">Helix</button><button role="tab" aria-selected="false" data-t="1">Nucleotide &amp; bonds</button><button role="tab" aria-selected="false" data-t="2">Build puzzle</button><button role="tab" aria-selected="false" data-t="4">Assemble</button><button role="tab" aria-selected="false" data-t="5">Sandbox</button><button role="tab" aria-selected="false" data-t="3">Test mode</button></nav></header>
+<nav role="tablist"><button role="tab" aria-selected="true" data-t="0">Helix</button><button role="tab" aria-selected="false" data-t="6">History</button><button role="tab" aria-selected="false" data-t="1">Nucleotide &amp; bonds</button><button role="tab" aria-selected="false" data-t="2">Build puzzle</button><button role="tab" aria-selected="false" data-t="4">Assemble</button><button role="tab" aria-selected="false" data-t="5">Sandbox</button><button role="tab" aria-selected="false" data-t="7">Spot the mistake</button><button role="tab" aria-selected="false" data-t="8">DNA vs RNA</button><button role="tab" aria-selected="false" data-t="9">Transcription</button><button role="tab" aria-selected="false" data-t="10">Translation</button><button role="tab" aria-selected="false" data-t="11">Decode it</button><button role="tab" aria-selected="false" data-t="3">Test mode</button></nav></header>
 <main>
-<section id="s0" class="on"><h2>Unwind the double helix</h2><p class="sub">Click the helix or drag the slider to unwind it into a flat ladder.</p>
-<svg id="hx" viewBox="0 0 640 340" role="img" aria-label="DNA double helix"></svg>
+<section id="s0" class="on"><h2>Unwind the double helix</h2><p class="sub">Click the helix or drag the slider to unwind it into a flat ladder. The strands run in opposite directions (antiparallel).</p>
+<svg id="hx" viewBox="0 0 420 440" role="img" aria-label="DNA double helix"></svg>
 <div class="row"><span>Twisted</span><input id="sl" type="range" min="0" max="1" step="0.01" value="1" aria-label="Unwind"><span>Unwound</span></div>
 <div class="row" id="chips"><button class="chip" data-f="p">Phosphate</button><button class="chip" data-f="s">Deoxyribose</button><button class="chip" data-f="b">Bases</button><button class="chip" data-f="h">Hydrogen bonds</button><button class="chip" data-f="c">Covalent backbone</button><button class="chip" data-f="d">Direction</button></div>
 <div class="info" id="hinfo"></div>
 <div class="row"><button class="btn alt" id="rnd">New random sequence</button></div></section>
 
-<section id="s1"><h2>One nucleotide</h2><p class="sub">Click any part, bond or end to learn about it. Solid lines are covalent bonds.</p>
-<div id="nuc"></div><div class="info" id="ninfo">Select a part of the nucleotide.</div>
+<section id="s1"><h2>One nucleotide</h2><p class="sub">Click any part or bond to learn about it. Solid lines are covalent bonds. Turn on "Show atoms" to see the carbon numbers.</p>
+<div class="row"><button class="chip" id="atoms" aria-pressed="false">Show atoms (carbon numbers)</button></div><div id="nuc"></div><div class="info" id="ninfo">Select a part of the nucleotide.</div>
 <h2 style="margin-top:18px">Base pairs and hydrogen bonds</h2>
 <div class="row"><button class="chip" data-p="AT" aria-pressed="true">A – T</button><button class="chip" data-p="GC" aria-pressed="false">G – C</button></div>
 <div id="pair"></div><div class="info" id="pinfo"></div></section>
 
-<section id="s2"><h2>Build the complementary strand</h2><p class="sub">Drag a base from the palette onto a slot, or pick a slot and tap a base. Each must pair with the template base above it.</p>
-<svg id="bsvg" viewBox="0 0 620 300" role="img" aria-label="Template strand and new strand"></svg>
+<section id="s2"><h2>Build the complementary strand</h2><p class="sub">Drag a base from the palette onto a slot, or pick a slot and tap a base. The left strand is the template and runs 5′ to 3′ downward. Build the right strand: it runs the opposite way (antiparallel), so its sugars are rotated 180°.</p>
+<svg id="bsvg" viewBox="0 0 410 452" role="img" aria-label="Template strand and new strand"></svg>
 <div class="row" id="pal"></div><div class="msg" id="bmsg"></div>
 <div class="row"><button class="btn alt" id="hint">Hint</button><button class="btn" id="again">New puzzle</button></div></section>
 
@@ -94,77 +135,116 @@ input[type=range]{flex:1;min-width:160px}
 <svg id="az" viewBox="0 0 520 290" role="img" aria-label="Nucleotide assembly"></svg><div class="row" id="tray"></div><div class="msg" id="amsg"></div>
 <div class="row"><button class="btn" id="anew">New nucleotide</button></div></section>
 <section id="s5"><h2>Sandbox</h2><p class="sub">Drag nucleotides onto the canvas and see what you can build. Drag pieces to move them. Select a strand to flip, break apart or delete it.</p>
-<svg id="sbx" data-drop="sbx" viewBox="0 0 760 440" role="img" aria-label="Sandbox canvas"></svg>
+<svg id="sbx" data-drop="sbx" viewBox="0 0 560 560" role="img" aria-label="Sandbox canvas"></svg>
 <div class="row" id="sbpal"></div>
 <div class="row"><button class="btn alt" id="sflip">Flip selected</button><button class="btn alt" id="ssplit">Break apart</button><button class="btn alt" id="sdel">Delete selected</button><button class="btn alt" id="sclr">Clear all</button></div>
 <div class="msg" id="smsg"></div><div class="info" id="sbinfo"></div>
 <p class="sub" style="margin-top:12px">Dark links are covalent phosphodiester bonds. Dashed lines are hydrogen bonds. Try this: 1) Join 4 nucleotides into a strand. 2) Build a partner strand below it so the bases pair. 3) Join two pieces that face opposite ways and see what happens.</p></section>
+<section id="s6"><h2>How we found the structure</h2><p class="sub">Click through the timeline from the first clues to the double helix.</p>
+<div class="row" id="htl"></div><div class="info" id="hcard"></div>
+<div class="row"><button class="btn alt" id="hprev">Previous</button><button class="btn" id="hnext">Next</button></div>
+<h2 style="margin-top:20px">Read Photo 51 like Rosalind Franklin</h2><p class="sub">Photo 51 was made by firing X-rays at DNA and recording how they bounced off. Click a clue to see what it tells you. This is a simplified drawing in the style of Photo 51, not the original photograph.</p>
+<svg id="p51" viewBox="0 0 320 320" role="img" aria-label="Simplified drawing of an X-ray pattern like Photo 51"><rect width="320" height="320" rx="12" fill="#0d0d12"/>
+<g class="pg pl" stroke="#9aa4ba" stroke-width="2" opacity=".45"><line x1="60" y1="132" x2="260" y2="132"/><line x1="60" y1="188" x2="260" y2="188"/><line x1="60" y1="104" x2="260" y2="104"/><line x1="60" y1="216" x2="260" y2="216"/><line x1="60" y1="76" x2="260" y2="76"/><line x1="60" y1="244" x2="260" y2="244"/><line x1="60" y1="48" x2="260" y2="48"/><line x1="60" y1="272" x2="260" y2="272"/></g>
+<g class="pg px" fill="#e9eef8"><circle cx="146.5" cy="146" r="5.8" opacity="0.93"/><circle cx="146.5" cy="174" r="5.8" opacity="0.93"/><circle cx="173.5" cy="146" r="5.8" opacity="0.93"/><circle cx="173.5" cy="174" r="5.8" opacity="0.93"/><circle cx="133.0" cy="132" r="5.3" opacity="0.86"/><circle cx="133.0" cy="188" r="5.3" opacity="0.86"/><circle cx="187.0" cy="132" r="5.3" opacity="0.86"/><circle cx="187.0" cy="188" r="5.3" opacity="0.86"/><circle cx="119.5" cy="118" r="4.8" opacity="0.79"/><circle cx="119.5" cy="202" r="4.8" opacity="0.79"/><circle cx="200.5" cy="118" r="4.8" opacity="0.79"/><circle cx="200.5" cy="202" r="4.8" opacity="0.79"/><circle cx="106.0" cy="104" r="4.4" opacity="0.72"/><circle cx="106.0" cy="216" r="4.4" opacity="0.72"/><circle cx="214.0" cy="104" r="4.4" opacity="0.72"/><circle cx="214.0" cy="216" r="4.4" opacity="0.72"/><circle cx="92.5" cy="90" r="4.0" opacity="0.65"/><circle cx="92.5" cy="230" r="4.0" opacity="0.65"/><circle cx="227.5" cy="90" r="4.0" opacity="0.65"/><circle cx="227.5" cy="230" r="4.0" opacity="0.65"/><circle cx="79.0" cy="76" r="3.5" opacity="0.58"/><circle cx="79.0" cy="244" r="3.5" opacity="0.58"/><circle cx="241.0" cy="76" r="3.5" opacity="0.58"/><circle cx="241.0" cy="244" r="3.5" opacity="0.58"/><circle cx="65.5" cy="62" r="3.1" opacity="0.51"/><circle cx="65.5" cy="258" r="3.1" opacity="0.51"/><circle cx="254.5" cy="62" r="3.1" opacity="0.51"/><circle cx="254.5" cy="258" r="3.1" opacity="0.51"/><circle cx="52.0" cy="48" r="2.6" opacity="0.44"/><circle cx="52.0" cy="272" r="2.6" opacity="0.44"/><circle cx="268.0" cy="48" r="2.6" opacity="0.44"/><circle cx="268.0" cy="272" r="2.6" opacity="0.44"/></g>
+<g class="pg pa" fill="none" stroke="#e9eef8" stroke-width="5" stroke-linecap="round"><path d="M96 46Q160 20 224 46"/><path d="M110 62Q160 44 210 62"/><path d="M96 274Q160 300 224 274"/><path d="M110 258Q160 276 210 258"/></g></svg>
+<div class="row" id="pchips"><button class="chip" data-h="x">The X shape</button><button class="chip" data-h="l">The rows (layer lines)</button><button class="chip" data-h="a">The arcs at top and bottom</button></div>
+<div class="info" id="pinfo2">Select a clue.</div>
+<h2 style="margin-top:20px">Chargaff's clue</h2><p class="sub">Erwin Chargaff found that in any DNA sample the amount of A equals the amount of T, and G equals C. Move the slider to change the amount of A.</p>
+<div class="row"><label for="chA">Amount of A: <b id="chAv">30</b>%</label><input id="chA" type="range" min="10" max="40" step="1" value="30"></div>
+<div id="chBar" style="display:flex;border-radius:8px;overflow:hidden;height:40px;font-weight:700;color:#fff"></div><div class="info" id="chInfo" style="margin-top:10px"></div></section>
+<section id="s7"><h2>Spot the mistake</h2><p class="sub">This DNA ladder contains 3 mistakes. Tap each place you think is wrong (base pairs, hydrogen bonds, the backbone, the labels), then press Check.</p><svg id="spsvg" viewBox="0 0 410 452" role="img" aria-label="DNA ladder with mistakes"></svg><div class="row"><button class="btn" id="spcheck">Check</button><button class="btn alt" id="sphint">Hint</button><button class="btn alt" id="spnew">New puzzle</button></div><div class="msg" id="spmsg"></div><div id="spex"></div></section>
+<section id="s8"><h2>DNA vs RNA</h2><p class="sub">Tap a feature to compare DNA with RNA. Then test yourself with the sorting game below.</p><div class="row" id="cfchips"></div><div class="cols"><div class="cbox"><h3>DNA</h3><svg id="cmpD" class="cmp" viewBox="-12 0 224 235" role="img" aria-label="DNA double strand"></svg><div class="info" id="cfD"></div></div><div class="cbox"><h3>RNA</h3><svg id="cmpR" class="cmp" viewBox="-12 0 224 235" role="img" aria-label="RNA single strand"></svg><div class="info" id="cfR"></div></div></div><h3 style="margin-top:18px">Sort it: DNA, RNA or both?</h3><div id="sortq"></div></section>
+<section id="s9"><h2>Transcription: copying a gene into mRNA</h2><p class="sub">DNA stays safe in the nucleus, so a working copy of one gene is made. This copy is called messenger RNA (mRNA). RNA polymerase builds it by matching RNA bases to the template strand.</p><ol id="trstep" class="steps"></ol><svg id="trsvg" viewBox="0 0 560 270" role="img" aria-label="Transcription diagram"></svg><p class="sub" style="font-size:13px;margin:2px 0 8px">Top: coding strand. Middle: template strand. Bottom: the mRNA being built.</p><div class="row" id="trpal"></div><div class="row"><button class="btn" id="trgo"></button><button class="btn alt" id="trkeyb">Pairing key</button><button class="btn alt" id="trnew">New gene</button></div><div class="info" id="trkey" hidden>When making RNA from a DNA template: A pairs with U, T pairs with A, C pairs with G, G pairs with C. RNA has no thymine (T).</div><div class="msg" id="trmsg"></div></section>
+<section id="s10"><h2>Translation: making a protein</h2><p class="sub">The code in mRNA is used to build a protein at a ribosome. Follow the mRNA from the nucleus to the finished protein.</p><ol id="tlstep" class="steps"></ol><svg id="tlsvg" viewBox="0 0 560 340" role="img" aria-label="Translation diagram"></svg><div class="row" id="tlbtns"></div><div id="tlbarw" style="display:none"><label for="tlbar" class="sub" style="font-size:13px">Ribosome position along the mRNA (drag to move it)</label><input type="range" id="tlbar" min="0" max="500" value="0" step="1" style="width:100%"></div><div class="msg" id="tlmsg"></div><div class="info" id="tlinfo" style="display:none"><b>How tRNA works:</b> each tRNA has an <b>anticodon</b> (3 bases) at one end and one specific <b>amino acid</b> at the other. The anticodon is complementary to a codon, so it binds to the mRNA by base pairing (A with U, G with C) using hydrogen bonds. This is how the correct amino acid is brought to the correct place in the chain.</div><div class="row"><button class="btn alt" id="tlauto">Play it for me</button><button class="btn alt" id="tlnew">Start again</button></div></section>
+<section id="s11"><h2>Decode it</h2><p class="sub">Two challenges. First, convert between DNA and mRNA. Then use the codon table to work out the protein from a code.</p>
+<h3 style="margin:8px 0 4px">1. DNA and mRNA converter</h3><div class="row" id="dcchips"></div><div id="dcg"></div><div id="dca" style="margin-top:8px"></div><div class="row" id="dcpal"></div><div class="row"><button class="btn" id="dccheck">Check</button><button class="btn alt" id="dcundo">Undo</button><button class="btn alt" id="dcnew">New sequence</button></div><div class="msg" id="dcmsg"></div>
+<h3 style="margin:18px 0 4px">2. From gene to protein</h3><p class="sub" style="margin:0 0 8px">Start from the DNA template or the mRNA, then fill in every blank: the other strand, the tRNA anticodons, and the amino acids (use the codon table below). The mRNA is read in codons from AUG to a stop codon.</p><div class="row" id="prchips"></div><div id="prm" style="overflow-x:auto"></div><div class="row"><button class="btn" id="prcheck">Check</button><button class="btn alt" id="prnew">New code</button></div><div class="msg" id="prmsg"></div><div id="prex"></div>
+<h3 style="margin:14px 0 4px">Codon table (mRNA)</h3><p class="sub" style="margin:0 0 6px;font-size:13px">First base on the left, second base along the top, third base on the right. Under each name: the 3-letter abbreviation.</p><div style="overflow-x:auto"><div id="ctab"></div></div></section>
 </main>
 <script>
 const $=s=>document.querySelector(s),B={A:'T',T:'A',G:'C',C:'G'},BS=['A','T','G','C'];
 const NAME={A:'Adenine',T:'Thymine',G:'Guanine',C:'Cytosine'},HB=b=>'AT'.includes(b)?2:3;
 const rnd=a=>a[Math.random()*a.length|0],shuf=a=>[...a].sort(()=>Math.random()-.5);
 const rc=s=>[...s].reverse().map(x=>B[x]).join('');
-const FI={p:'Phosphate groups sit between sugars. Each one links the 3′ carbon of one sugar to the 5′ carbon of the next, and carries a negative charge.',s:'Deoxyribose is a five-carbon sugar. "Deoxy" means it lacks an –OH on carbon 2′. Sugars alternate with phosphates along each strand.',b:'The bases A, T, G and C face inward. Each base pairs only with its complement: A with T, G with C.',h:'Hydrogen bonds join the bases across the strands: 2 for A–T, 3 for G–C. Each one is weak, but together they hold the helix.',c:'The sugar–phosphate backbone is held together by strong covalent bonds (phosphodiester bonds), so each strand is a sturdy chain.',d:'The strands are antiparallel. Strand 1 runs 5′→3′ left to right; strand 2 runs 5′→3′ right to left.'};
+const FI={p:'Each phosphate links two sugars. It bonds, through oxygen, to the 3′ carbon of one sugar and to the 5′ carbon of the next sugar along the strand.',s:'Deoxyribose is a ring of four carbons and one oxygen. Carbon 2′ holds only hydrogen (no oxygen), which is what "deoxy" means. The sugars on the two strands point opposite ways.',b:'The bases A, T, G and C hang from carbon 1′ of each sugar and face inward. Each base pairs only with its complement: A with T, G with C.',h:'Hydrogen bonds join the bases across the two strands: 2 for A–T, 3 for G–C. Each one is weak, but together they hold the helix.',c:'Along each strand, covalent bonds run C3′ – O – P – O – C5′ (a phosphodiester bond) from sugar to sugar, so each strand is a strong chain.',d:'The strands are antiparallel. Strand 1 runs 5′→3′ downward. Strand 2 is rotated 180°, so its 5′→3′ direction runs upward.'};
 const FD='Click a label to spotlight one part of the molecule. Click again to show everything.';
 // ---------- tabs
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x==b));document.querySelectorAll('section').forEach((s,i)=>s.classList.toggle('on',i==b.dataset.t));if(b.dataset.t==3&&!Q.length)startTest()});
 // ---------- helix
-let seq='ATGCCGTAGC',t=1,tgt=1,focus=null,raf=0;
-function helix(){const N=seq.length,X=i=>50+i*60,cy=170,A=85,ph=x=>t*(x-50)/60*.62,Y1=x=>cy-A*Math.cos(ph(x)),Y2=x=>cy+A*Math.cos(ph(x));let s='';
-for(const f of[Y1,Y2]){let d='';for(let x=50;x<=50+(N-1)*60;x+=6)d+=(x==50?'M':'L')+x+' '+f(x).toFixed(1);s+=`<path class="g c" d="${d}" fill="none" stroke="var(--bb)" stroke-width="5" stroke-linecap="round"/>`}
-for(let i=0;i<N;i++){const x=X(i),c=Math.cos(ph(x)),y1=Y1(x),y2=Y2(x),m=8*c,a=seq[i],b=B[a],n=HB(a);
-s+=`<line class="g b" x1="${x}" y1="${y1}" x2="${x}" y2="${cy-m}" stroke="var(--${a})" stroke-width="18"/><line class="g b" x1="${x}" y1="${cy+m}" x2="${x}" y2="${y2}" stroke="var(--${b})" stroke-width="18"/>`;
-for(let k=0;k<n;k++){const xx=x+(k-(n-1)/2)*9;s+=`<line class="g h" x1="${xx}" y1="${cy-m}" x2="${xx}" y2="${cy+m}" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="3 3"/>`}
-if(Math.abs(c)>.5)s+=`<g class="g b" fill="#fff" font-weight="700" font-size="14" text-anchor="middle"><text x="${x}" y="${(y1+cy-m)/2+5}">${a}</text><text x="${x}" y="${(y2+cy+m)/2+5}">${b}</text></g>`}
-for(let i=0;i<N-1;i++){const x=X(i)+30;for(const f of[Y1,Y2])s+=`<g class="g p"><circle cx="${x}" cy="${f(x)}" r="8" fill="var(--P)"/><text x="${x}" y="${f(x)+3.5}" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">P</text></g>`}
-for(let i=0;i<N;i++){const x=X(i);for(const f of[Y1,Y2]){const y=f(x),p=[0,1,2,3,4].map(k=>[x+11*Math.sin(k*1.2566),y-11*Math.cos(k*1.2566)].map(v=>v.toFixed(1)).join(',')).join(' ');s+=`<polygon class="g s" points="${p}" fill="var(--S)"/>`}}
-const e=X(N-1),a1=Y1(50),a2=Y1(e),b1=Y2(50),b2=Y2(e);
-s+=`<g class="g d" font-weight="700" font-size="15" text-anchor="middle" fill="var(--ink)"><text x="14" y="${a1+5}">5′</text><text x="14" y="${b1+5}">3′</text><text x="${e+36}" y="${a2+5}">3′</text><text x="${e+36}" y="${Y2(e)+5}">5′</text><path d="M${e+8} ${a2-6}L${e+20} ${a2}L${e+8} ${a2+6}Z"/><path d="M42 ${b1-6}L30 ${b1}L42 ${b1+6}Z"/></g>`;
+let seq='ATGCCGTA',t=1,tgt=1,focus=null,raf=0;
+function helix(){const N=seq.length,Y=i=>56+i*46,cx=210,A=80,r=13,ph=i=>t*i*.62,X1=i=>cx-A*Math.cos(ph(i)),X2=i=>cx+A*Math.cos(ph(i)),S1=[],S2=[],U=[];let s='';
+for(let i=0;i<N;i++){const c=Math.cos(ph(i)),u=c>=0?1:-1;U.push(u);S1.push(sug(X1(i),Y(i)+.31*r,r,u,1));S2.push(sug(X2(i),Y(i)-.31*r,r,-u,-1))}
+for(let i=0;i<N-1;i++)s+=bk(S1[i].c3,S1[i+1].c4,-U[i]*22)+bk(S2[i+1].c3,S2[i].c4,U[i]*22);
+for(let i=0;i<N;i++){const c=Math.cos(ph(i)),m=14*c,a=seq[i],b=B[a],n=HB(a),y=Y(i);if(Math.abs(c)<.2)continue;const x1=S1[i].c1[0],x2=S2[i].c1[0];
+s+=`<line class="g b" x1="${x1}" y1="${y}" x2="${cx-m}" y2="${y}" stroke="var(--${a})" stroke-width="18"/><line class="g b" x1="${cx+m}" y1="${y}" x2="${x2}" y2="${y}" stroke="var(--${b})" stroke-width="18"/>`;
+for(let k=0;k<n;k++){const yy=y+(k-(n-1)/2)*6;s+=`<line class="g h" x1="${cx-m}" y1="${yy}" x2="${cx+m}" y2="${yy}" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="3 3"/>`}
+if(Math.abs(c)>.5)s+=`<g class="g b" fill="#fff" font-weight="700" font-size="14" text-anchor="middle"><text x="${(x1+cx-m)/2}" y="${y+5}">${a}</text><text x="${(x2+cx+m)/2}" y="${y+5}">${b}</text></g>`}
+for(let i=0;i<N;i++)s+=`<polygon class="g s" points="${S1[i].pts}" fill="var(--S)" stroke="var(--ink)" stroke-width="1"/><polygon class="g s" points="${S2[i].pts}" fill="var(--S)" stroke="var(--ink)" stroke-width="1"/>`;
+s+=`<g class="g d" font-weight="700" font-size="15" text-anchor="middle" fill="var(--ink)"><text x="${X1(0)-6}" y="${Y(0)-28}">5′</text><text x="${X2(0)+6}" y="${Y(0)-28}">3′</text><text x="${X1(N-1)-6}" y="${Y(N-1)+44}">3′</text><text x="${X2(N-1)+6}" y="${Y(N-1)+44}">5′</text></g>`;
 $('#hx').innerHTML=s;$('#hx').dataset.f=focus||'';if(!focus)$('#hx').removeAttribute('data-f');$('#sl').value=t}
 function tick(){t+=(tgt-t)*.1;if(Math.abs(tgt-t)<.004)t=tgt;helix();raf=t!=tgt?requestAnimationFrame(tick):0}
 $('#hx').onclick=()=>{tgt=t>.5?0:1;cancelAnimationFrame(raf);tick()};
 $('#sl').oninput=e=>{cancelAnimationFrame(raf);t=tgt=+e.target.value;helix()};
 $('#chips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;focus=focus==b.dataset.f?null:b.dataset.f;document.querySelectorAll('#chips .chip').forEach(x=>x.setAttribute('aria-pressed',x.dataset.f==focus));$('#hinfo').textContent=focus?FI[focus]:FD;helix()};
-$('#rnd').onclick=()=>{seq=Array.from({length:10},()=>rnd(BS)).join('');helix()};
+$('#rnd').onclick=()=>{seq=Array.from({length:8},()=>rnd(BS)).join('');helix()};
 $('#hinfo').textContent=FD;helix();
 // ---------- nucleotide
-const PI={phosphate:'Phosphate group: a phosphorus atom bonded to four oxygens. It is negatively charged and forms the link between nucleotides.',sugar:'Deoxyribose: a five-carbon sugar. Carbons are numbered 1′ to 5′. The base attaches at 1′, the phosphate at 5′, and the next nucleotide at 3′.',base:'Nitrogenous base (A, T, G or C). It carries the genetic information and pairs with a base on the opposite strand by hydrogen bonds.',glyco:'Glycosidic bond (covalent): joins carbon 1′ of the sugar to the base. Strong and stable.',ester:'Phosphoester bond (covalent): joins the phosphate to carbon 5′ of the sugar.',oh3:'Free 3′–OH end. The next nucleotide\'s phosphate bonds here, forming a phosphodiester bond (covalent). This is why strands grow 5′→3′.'};
-function nuc(){return`<svg viewBox="0 0 520 290" id="nsvg" role="img" aria-label="Nucleotide structure"><g stroke="var(--ink)" stroke-width="5" stroke-linecap="round"><line x1="140" y1="112" x2="190" y2="140" stroke-width="4"/><line x1="210" y1="205" x2="210" y2="246" stroke-width="4"/><line class="part" data-part="ester" x1="84" y1="92" x2="140" y2="112"/><line class="part" data-part="glyco" x1="310" y1="140" x2="382" y2="140"/></g>
-<polygon class="part" data-part="sugar" points="250,95 310,140 290,205 210,205 190,140" fill="var(--S)"/>
-<circle class="part" data-part="phosphate" cx="60" cy="88" r="26" fill="var(--P)"/>
-<rect class="part" data-part="base" x="380" y="108" width="110" height="64" rx="10" fill="var(--A)"/>
-<circle class="part" data-part="oh3" cx="210" cy="264" r="18" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
-<g fill="#fff" font-weight="700" font-size="15" text-anchor="middle" pointer-events="none"><text x="60" y="94" font-size="20">P</text><text x="435" y="146">Base</text><text x="250" y="118" font-size="12">O</text><text x="300" y="150" font-size="12">1′</text><text x="278" y="196" font-size="12">2′</text><text x="222" y="196" font-size="12">3′</text><text x="204" y="152" font-size="12">4′</text></g>
-<g fill="var(--ink)" font-size="13" text-anchor="middle" pointer-events="none"><text x="140" y="102">5′C</text><text x="210" y="269" font-weight="700">OH</text><text x="60" y="130">phosphate</text><text x="250" y="238">deoxyribose</text><text x="345" y="128" font-size="11">glycosidic</text></g></svg>`}
+const PI={phosphate:'Phosphate group (PO₄³⁻), negatively charged. Along a strand it bridges two sugars: through oxygen it bonds to the 5′ carbon of one sugar and to the 3′ carbon of the neighbouring sugar.',sugar:'Deoxyribose is a five-carbon sugar: a ring of four carbons (C1′ to C4′) and one oxygen, with C5′ outside the ring. "Deoxy" means it has one less oxygen than ribose (the RNA sugar). The base attaches at C1′, the phosphate at C5′, and the next nucleotide at C3′.',c2:'Carbon 2′ carries only a hydrogen. In ribose (the RNA sugar) this carbon has an –OH, so ribose has one more oxygen. "Deoxy" means "missing an oxygen", which is the difference between the DNA and RNA sugars.',c3:'Carbon 3′ bonds through its oxygen (O3′) to the phosphate of the next nucleotide. This covalent phosphodiester bond joins nucleotides into a strand, always in the 5′ to 3′ direction.',base:'Nitrogenous base (A, T, G or C). It carries the genetic information and pairs with a base on the opposite strand by hydrogen bonds.',glyco:'Glycosidic bond (covalent): joins carbon 1′ of the sugar to the base. Strong and stable.',ester:'Phosphoester bond (covalent): carbon 5′ (on the sugar) bonds through oxygen to the phosphate group.'};
+// sugar ring: vertex up like a textbook pentagon. c1' (base) upper right, c4' (5' side) upper left, c3' (3' side) lower left, c2' lower right (no O)
+function sug(cx,cy,r,sx,sy){const u={o:[0,-1],c1:[.95,-.31],c2:[.59,.81],c3:[-.59,.81],c4:[-.95,-.31]},o={};for(const k in u)o[k]=[cx+sx*r*u[k][0],cy+sy*r*u[k][1]];o.pts=['o','c1','c2','c3','c4'].map(k=>o[k].map(v=>v.toFixed(1)).join(',')).join(' ');return o}
+// backbone link: C3' of one sugar - phosphate - C4'/C5' of the next sugar (phosphate pushed outward by ox)
+function bk(A,B,ox){const P=[(A[0]+B[0])/2+ox,(A[1]+B[1])/2];return `<g class="g c"><polyline points="${A[0]},${A[1]} ${P[0]},${P[1]} ${B[0]},${B[1]}" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></g><g class="g p"><circle cx="${P[0]}" cy="${P[1]}" r="8" fill="var(--P)"/><text x="${P[0]}" y="${P[1]+3.2}" font-size="9" font-weight="700" text-anchor="middle" fill="#fff">P</text></g>`}
+function cap5(B,ox,dy){const P=[B[0]+ox,B[1]+dy];return `<g class="g c"><line x1="${B[0]}" y1="${B[1]}" x2="${P[0]}" y2="${P[1]}" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/></g><g class="g p"><circle cx="${P[0]}" cy="${P[1]}" r="8" fill="var(--P)"/><text x="${P[0]}" y="${P[1]+3.2}" font-size="9" font-weight="700" text-anchor="middle" fill="#fff">P</text></g>`}
+function cap3(A,ox,dy){return `<g class="g c"><line x1="${A[0]}" y1="${A[1]}" x2="${A[0]+ox*.4}" y2="${A[1]+dy}" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/></g>`}
+function nucSVG(d,det){const all=!d,P=all||d.phosphate,S=all||d.sugar,Bs=all||d.base,g=sug(260,150,70,1,1);
+const pa=k=>all?` class="part" data-part="${k}"`:'',col=(k,def)=>all?def:d[k]?`var(--${d[k].c})`:'var(--bg)';
+const zn=(k,ok,def)=>ok?`${pa(k)} fill="${col(k,def)}" stroke="var(--ink)" stroke-width="2"`:` data-drop="z" data-z="${k}" fill="var(--bg)" stroke="var(--ink)" stroke-width="2" stroke-dasharray="6 5"`;
+const ln=(a,b,c,e,on,k)=>`<line x1="${a}" y1="${b}" x2="${c}" y2="${e}" ${on?`stroke="var(--ink)" stroke-width="${k?7:4}" stroke-linecap="round"${k?pa(k):''}`:'stroke="var(--line)" stroke-width="4" stroke-dasharray="3 7" stroke-linecap="round"'}/>`;
+const at=(p,l,f,tc,k,rr)=>`<g${pa(k)}><circle cx="${p[0]}" cy="${p[1]}" r="${rr||11}" fill="${f}" stroke="var(--ink)" stroke-width="2"/><text x="${p[0]}" y="${p[1]+3.5}" text-anchor="middle" font-size="9.5" font-weight="700" fill="${tc}" pointer-events="none">${l}</text></g>`;
+const tx=(x,y,t,c,sz,w)=>`<text x="${x}" y="${y}" text-anchor="middle" font-size="${sz||12}" font-weight="${w||700}" fill="${c}" pointer-events="none">${t}</text>`,W='#fff',M='var(--mute)',I='var(--ink)',CD='var(--card)',R='var(--A)';
+const C5=[158,100],O5=[124,80];let o='';
+if(det&&S)o+=ln(g.c4[0],g.c4[1],C5[0],C5[1],true)+ln(C5[0],C5[1],O5[0],O5[1],P,'ester')+ln(O5[0],O5[1],84,60,P,'ester');
+else o+=ln(g.c4[0],g.c4[1],84,60,S&&P,'ester');
+o+=ln(g.c1[0],g.c1[1],392,134,S&&Bs,'glyco')+ln(g.c3[0],g.c3[1],196,246,S);
+o+=`<polygon points="${g.pts}"${zn('sugar',S,'var(--S)')} stroke-linejoin="round"/><circle cx="84" cy="60" r="26"${zn('phosphate',P,'var(--P)')}/><rect x="392" y="108" width="100" height="52" rx="10"${zn('base',Bs,'var(--A)')}/>`;
+if(S){o+=det?at([196,246],'O',R,W,'c3'):at([196,246],'3′',CD,I,'c3');
+ if(det){o+=at(g.c1,'C1′',CD,I,'sugar')+at(g.c4,'C4′',CD,I,'sugar')+at(g.o,'O',R,W,'sugar')+at(g.c3,'C3′',CD,I,'c3')+at(C5,'C5′',CD,I,'sugar')+at(O5,'O',R,W,'ester',9);
+ o+=at(g.c2,'C2′',CD,I,'sugar')}
+ o+=tx(260,160,'Deoxyribose',W,13)+tx(196,282,'next nucleotide joins here (3′)',M,11)}
+else o+=tx(260,156,'Deoxyribose',M,13);
+o+=P?tx(84,68,'P',W,22)+tx(84,104,'phosphate',I,12):tx(84,64,'Phosphate',M,11);
+o+=Bs?tx(442,139,all?'Base':d.base.l,W,15)+tx(442,178,'nitrogenous base',I,12):tx(442,138,'Base',M,13);
+return o}
+const nuc=det=>'<svg viewBox="0 0 520 290" role="img" aria-label="Nucleotide structure">'+nucSVG(undefined,det)+'</svg>';
 function bindNuc(el,fn){el.querySelectorAll('.part').forEach(p=>p.onclick=()=>fn(p.dataset.part,p))}
-$('#nuc').innerHTML=nuc();
-bindNuc($('#nuc'),(k,p)=>{document.querySelectorAll('#nuc .part').forEach(x=>x.classList.toggle('sel',x==p));$('#ninfo').textContent=PI[k]});
+let NDET=0;
+function renderNuc(){$('#nuc').innerHTML=nuc(NDET);bindNuc($('#nuc'),(k,p)=>{document.querySelectorAll('#nuc .part').forEach(x=>x.classList.toggle('sel',x==p));$('#ninfo').textContent=PI[k]})}
+$('#atoms').onclick=()=>{NDET=NDET?0:1;$('#atoms').setAttribute('aria-pressed',!!NDET);renderNuc()};renderNuc();
 function pair(k){const a=k[0],b=k[1],n=HB(a);let l='';for(let j=0;j<n;j++){const y=55+(j-(n-1)/2)*20;l+=`<line x1="196" y1="${y}" x2="324" y2="${y}" stroke="var(--ink)" stroke-width="3" stroke-dasharray="7 5"/>`}
 $('#pair').innerHTML=`<svg viewBox="0 0 520 120"><rect x="40" y="20" width="156" height="70" rx="10" fill="var(--${a})"/><rect x="324" y="20" width="156" height="70" rx="10" fill="var(--${b})"/>${l}<g fill="#fff" font-weight="700" font-size="17" text-anchor="middle"><text x="118" y="61">${NAME[a]}</text><text x="402" y="61">${NAME[b]}</text></g><text x="260" y="112" text-anchor="middle" fill="var(--ink)" font-size="14">${n} hydrogen bonds (dashed)</text></svg>`;
 $('#pinfo').textContent=`${NAME[a]} and ${NAME[b]} form ${n} hydrogen bonds. Hydrogen bonds are weak one at a time, so the strands can unzip for copying. Covalent bonds in the backbone are strong, so each strand stays intact. G–C pairs (3 bonds) are held more tightly than A–T pairs (2 bonds).`}
 document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-p]').forEach(x=>x.setAttribute('aria-pressed',x==b));pair(b.dataset.p)});pair('AT');
 // ---------- build
 let tpl=[],fl=[],cur=0,mis=0;
-function newPuz(){tpl=Array.from({length:8},()=>rnd(BS));fl=Array(8).fill(null);cur=0;mis=0;$('#bmsg').textContent='Choose a base for the highlighted slot.';buildR()}
-const PG=(x,y,r,f)=>[0,1,2,3,4].map(k=>[x+r*Math.sin(k*1.2566),y-f*r*Math.cos(k*1.2566)].map(v=>v.toFixed(1)).join(',')).join(' ');
-function buildR(){const cx=i=>56+i*72,n=tpl.length;let o='';
-const bb=y=>`<line x1="${cx(0)-38}" y1="${y}" x2="${cx(n-1)}" y2="${y}" stroke="var(--bb)" stroke-width="5" stroke-linecap="round"/>`;
-o+=bb(52)+bb(250);
-tpl.forEach((b,i)=>{const x=cx(i),f=fl[i];
-o+=`<circle cx="${x-36}" cy="52" r="9" fill="var(--P)"/><circle cx="${x-36}" cy="250" r="9" fill="var(--P)"/>`;
-o+=`<rect x="${x-17}" y="72" width="34" height="62" rx="6" fill="var(--${b})"/><line x1="${x}" y1="52" x2="${x}" y2="72" stroke="var(--ink)" stroke-width="4"/><polygon points="${PG(x,52,16,1)}" fill="var(--S)"/>`;
-o+=`<line x1="${x}" y1="228" x2="${x}" y2="250" stroke="var(--ink)" stroke-width="4"/><polygon points="${PG(x,250,16,-1)}" fill="var(--S)"/>`;
-if(f)for(let k=0;k<HB(b);k++){const xx=x+(k-(HB(b)-1)/2)*8;o+=`<line x1="${xx}" y1="138" x2="${xx}" y2="170" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="3 3"/>`}
-o+=`<g class="slotg" data-i="${i}" data-drop="slot" tabindex="0" role="button" aria-label="Slot ${i+1}"><rect x="${x-17}" y="172" width="34" height="62" rx="6" ${f?`fill="var(--${f})"`:`fill="var(--bg)" stroke="var(--${i==cur?'ink':'line'})" stroke-width="${i==cur?3:2}" stroke-dasharray="6 4"`}/><text x="${x}" y="209" text-anchor="middle" font-weight="700" font-size="16" fill="${f?'#fff':'var(--mute)'}">${f||'?'}</text></g>`;
-o+=`<text x="${x}" y="109" text-anchor="middle" font-weight="700" font-size="16" fill="#fff" pointer-events="none">${b}</text>`});
-o+=`<g font-weight="700" font-size="14" fill="var(--ink)" text-anchor="middle"><text x="12" y="30">5′</text><text x="608" y="30">3′</text><text x="12" y="282">3′</text><text x="608" y="282">5′</text></g><g font-size="12" fill="var(--mute)"><text x="${cx(0)-38}" y="298">pentagon = deoxyribose, orange = phosphate</text></g>`;
+function newPuz(){tpl=Array.from({length:6},()=>rnd(BS));fl=Array(6).fill(null);cur=0;mis=0;$('#bmsg').textContent='Choose a base for the highlighted slot.';buildR()}
+function buildR(){const n=tpl.length,r=20,Y=i=>70+i*60,xl=96,xr=312,RW2=56,RH2=34,Sl=[],Sr=[];let o='';
+for(let i=0;i<n;i++){Sl.push(sug(xl,Y(i)+.31*r,r,1,1));Sr.push(sug(xr,Y(i)-.31*r,r,-1,-1))}
+for(let i=0;i<n-1;i++)o+=bk(Sl[i].c3,Sl[i+1].c4,-22)+bk(Sr[i+1].c3,Sr[i].c4,22);
+o+=cap5(Sl[0].c4,-22,-26)+cap3(Sl[n-1].c3,-22,24)+cap3(Sr[0].c3,22,-24)+cap5(Sr[n-1].c4,22,26);
+tpl.forEach((b,i)=>{const y=Y(i),f=fl[i],lx=Sl[i].c1[0],rx=Sr[i].c1[0];
+o+=`<line x1="${lx}" y1="${y}" x2="${lx+4}" y2="${y}" stroke="var(--ink)" stroke-width="3"/><rect x="${lx+4}" y="${y-RH2/2}" width="${RW2}" height="${RH2}" rx="6" fill="var(--${b})"/><text x="${lx+4+RW2/2}" y="${y+6}" text-anchor="middle" font-weight="700" font-size="17" fill="#fff" pointer-events="none">${b}</text><line x1="${rx}" y1="${y}" x2="${rx-4}" y2="${y}" stroke="var(--ink)" stroke-width="3"/>`;
+if(f)for(let k=0;k<HB(b);k++){const yy=y+(k-(HB(b)-1)/2)*7;o+=`<line x1="${lx+4+RW2+2}" y1="${yy}" x2="${rx-4-RW2-2}" y2="${yy}" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="3 3"/>`}
+o+=`<g class="slotg" data-i="${i}" data-drop="slot" tabindex="0" role="button" aria-label="Slot ${i+1}"><rect x="${rx-4-RW2}" y="${y-RH2/2}" width="${RW2}" height="${RH2}" rx="6" ${f?`fill="var(--${f})"`:`fill="var(--bg)" stroke="var(--${i==cur?'ink':'line'})" stroke-width="${i==cur?3:2}" stroke-dasharray="6 4"`}/><text x="${rx-4-RW2/2}" y="${y+6}" text-anchor="middle" font-weight="700" font-size="17" fill="${f?'#fff':'var(--mute)'}">${f||'?'}</text></g>`;
+o+=`<polygon points="${Sl[i].pts}" fill="var(--S)" stroke="var(--ink)" stroke-width="1.2"/><polygon points="${Sr[i].pts}" fill="var(--S)" stroke="var(--ink)" stroke-width="1.2"/>`});
+const P5l=[Sl[0].c4[0]-22,Sl[0].c4[1]-26],A3l=Sl[n-1].c3,A3r=Sr[0].c3,P5r=[Sr[n-1].c4[0]+22,Sr[n-1].c4[1]+26];
+o+=`<g font-weight="700" font-size="14" fill="var(--ink)" text-anchor="middle"><text x="${P5l[0]}" y="${P5l[1]-13}">5′</text><text x="${A3l[0]-8.8}" y="${A3l[1]+41}">3′</text><text x="${A3r[0]+8.8}" y="${A3r[1]-30}">3′</text><text x="${P5r[0]}" y="${P5r[1]+23}">5′</text></g><text x="205" y="446" text-anchor="middle" font-size="11" fill="var(--mute)">Solid: covalent bonds. Dotted: hydrogen bonds.</text>`;
 $('#bsvg').innerHTML=o;
 $('#bsvg').querySelectorAll('.slotg').forEach(g=>{const act=()=>{if(!fl[g.dataset.i]){cur=+g.dataset.i;buildR()}};g.onclick=act;g.onkeydown=e=>{if(e.key=='Enter'||e.key==' ')act()}})}
 $('#pal').innerHTML=BS.map(b=>`<button class="bx" style="background:var(--${b});width:56px" data-b="${b}">${b}</button>`).join('');
 function place(x){if(fl[cur]||fl.every(Boolean))return;const w=tpl[cur];
 if(x==B[w]){fl[cur]=x;const nx=fl.findIndex(v=>!v);cur=nx<0?cur:nx;$('#bmsg').textContent=`Correct: ${w}–${x} share ${HB(w)} hydrogen bonds.`;
-if(nx<0)$('#bmsg').textContent=`Complete with ${mis} mistake${mis==1?'':'s'}! Read 5′→3′ (right to left), your strand is ${[...fl].reverse().join('')}.`}
+if(nx<0)$('#bmsg').textContent=`Complete with ${mis} mistake${mis==1?'':'s'}! Read 5′→3′ (bottom to top), your strand is ${[...fl].reverse().join('')}.`}
 else{mis++;$('#bmsg').textContent=`Not quite. ${w} makes ${HB(w)} hydrogen bonds with its partner.`;buildR();const s=$('#bsvg').querySelector(`[data-i="${cur}"]`);s.classList.add('shake');return}buildR()}
 $('#pal').onclick=e=>{const b=e.target.closest('[data-b]');if(b)place(b.dataset.b)};
 $('#hint').onclick=()=>{if(fl.every(Boolean))return;const w=tpl[cur];$('#bmsg').textContent=`Purines (A, G) pair with pyrimidines (T, C). ${w} needs a partner that forms ${HB(w)} hydrogen bonds.`};
@@ -177,21 +257,13 @@ addEventListener('pointermove',mv);addEventListener('pointerup',up,{once:true});
 document.querySelectorAll('#pal [data-b]').forEach(b=>drag(b,d=>{if(d.dataset.drop=='slot'&&!fl[d.dataset.i]){cur=+d.dataset.i;place(b.dataset.b)}}));
 // ---------- assemble a nucleotide
 let asm;
-const ZN=[['phosphate','Phosphate','5′ carbon'],['sugar','Deoxyribose','center'],['base','Base','1′ carbon']];
 function asmNew(){const b=rnd(BS);asm={sel:null,done:{},pcs:shuf([{k:'phosphate',l:'Phosphate',c:'P'},{k:'sugar',l:'Deoxyribose',c:'S'},{k:'base',l:NAME[b],c:b},{k:'ribose',l:'Ribose',c:'S'},{k:'uracil',l:'Uracil',c:'bb'}])};$('#amsg').textContent='Build a DNA nucleotide: phosphate, deoxyribose and a base.';asmR()}
 function asmDrop(k,z){const p=asm.pcs.find(x=>x.k==k);if(!p||asm.done[z])return;let m='';
-if(k==z||(k=='sugar'&&z=='sugar')){asm.done[z]=p;asm.sel=null;m=Object.keys(asm.done).length==3?'Assembled! The phosphoester bond (5′ C to phosphate) and the glycosidic bond (1′ C to base) are covalent. The free 3′–OH will bond to the next nucleotide\'s phosphate.':`${p.l} fits here.`}
+if(k==z||(k=='sugar'&&z=='sugar')){asm.done[z]=p;asm.sel=null;m=Object.keys(asm.done).length==3?'Assembled! The base joins at C1′ (glycosidic bond) and the phosphate joins at C5′ (phosphoester bond). Both are covalent. The next nucleotide will bond at C3′.':`${p.l} fits here.`}
 else{m=k=='ribose'?'Ribose has an extra –OH on carbon 2′, which makes RNA. DNA uses deoxyribose.':k=='uracil'?'Uracil is an RNA base. DNA uses A, T, G and C.':`${p.l} doesn't go there. The phosphate bonds to 5′, the base to 1′.`;const e=$('#az').querySelector(`[data-z=${z}]`);e.classList.remove('shake');void e.offsetWidth;e.classList.add('shake')}
 $('#amsg').textContent=m;if(k==z)asmR(0,m)}
-function asmR(_,keep){const d=asm.done,P=d.phosphate,S=d.sugar,Bs=d.base;
-const L=(x1,y1,x2,y2,on)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${on?'var(--ink)':'var(--line)'}" stroke-width="5" stroke-linecap="round"${on?'':' stroke-dasharray="3 9"'}/>`;
-const st=p=>p?'stroke="none"':'stroke="var(--ink)" stroke-width="2" stroke-dasharray="6 5"',fi=p=>p?`var(--${p.c})`:'var(--bg)';
-let o=L(84,92,140,112,P&&S)+L(140,112,190,140,S)+L(310,140,382,140,S&&Bs)+L(210,205,210,246,S);
-o+=`<circle data-drop="z" data-z="phosphate" cx="60" cy="88" r="26" fill="${fi(P)}" ${st(P)}/><polygon data-drop="z" data-z="sugar" points="250,95 310,140 290,205 210,205 190,140" fill="${fi(S)}" ${st(S)}/><rect data-drop="z" data-z="base" x="380" y="108" width="110" height="64" rx="10" fill="${fi(Bs)}" ${st(Bs)}/><circle cx="210" cy="264" r="18" fill="var(--bg)" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 4"/>`;
-const T=(x,y,t,c)=>`<text x="${x}" y="${y}" text-anchor="middle" font-size="13" font-weight="700" fill="${c}" pointer-events="none">${t}</text>`,m='var(--mute)',w='#fff';
-o+=T(60,93,P?'P':'Phosphate',P?w:m)+T(250,172,S?'Deoxyribose':'Sugar',S?w:m)+T(435,145,Bs?Bs.l:'Base',Bs?w:m)+T(210,269,'OH',m)+T(210,292,'3′ end',m)+T(60,128,'5′ side',m)+T(435,196,'attaches at 1′ carbon',m);
-if(S)o+=['1′@300,150','2′@278,196','3′@222,196','4′@204,152','5′C@140,102'].map(q=>{const[t,c]=q.split('@'),[x,y]=c.split(',');return T(x,y,t,t=='5′C'?'var(--ink)':w)}).join('');
-$('#az').innerHTML=o;
+function asmR(_,keep){const d=asm.done;
+$('#az').innerHTML=nucSVG(d,!!(d.phosphate&&d.sugar&&d.base));
 $('#tray').innerHTML=asm.pcs.filter(p=>!Object.values(d).includes(p)).map(p=>`<div class="pc ${asm.sel==p.k?'armed':''}" data-k="${p.k}" style="background:var(--${p.c})">${p.l}</div>`).join('');
 $('#tray').querySelectorAll('.pc').forEach(el=>{drag(el,t=>{if(t.dataset.drop=='z')asmDrop(el.dataset.k,t.dataset.z)});el.onclick=()=>{asm.sel=asm.sel==el.dataset.k?null:el.dataset.k;asmR(0,1)}});
 $('#az').querySelectorAll('[data-z]').forEach(el=>el.onclick=()=>{if(asm.sel)asmDrop(asm.sel,el.dataset.z)});
@@ -203,58 +275,323 @@ function startTest(){const t4=Array.from({length:4},()=>rnd(BS)).join(''),b1=rnd
 const mc=(q,a,o,ex)=>({q,a,o:shuf(o),ex});
 const cl=(k,q)=>({q,click:k,ex:PI[k]});
 const dd=new Set([rc(t4),[...t4].map(x=>B[x]).join(''),[...t4].reverse().join(''),t4]);
-const pool=[mc(`Which base pairs with ${NAME[b1]} (${b1})?`,B[b1],BS,`${b1} pairs with ${B[b1]}.`),mc(`Which base pairs with ${NAME[b2]} (${b2})?`,B[b2],BS,`${b2} pairs with ${B[b2]}.`),
+const hist=[mc('What did the X shape in Photo 51 show?','DNA is a helix',['DNA is a helix','DNA is a flat sheet','DNA is made of protein','DNA has four strands'],'An X-shaped pattern is the signature of a helix.'),
+mc('Who led the X-ray work that produced Photo 51?','Rosalind Franklin',['Rosalind Franklin','Linus Pauling','Gregor Mendel','Charles Darwin'],'Rosalind Franklin, with her student Raymond Gosling, took Photo 51 in 1952.'),
+mc('What did Chargaff\'s rules say?','The amount of A equals T, and G equals C',['The amount of A equals T, and G equals C','The amount of A equals G, and T equals C','All four bases are always 25% in every species','DNA has more A than T'],'Chargaff found that A matches T and G matches C, a clue for base pairing.'),
+mc('Which technique was used to make Photo 51?','X-ray diffraction',['X-ray diffraction','Electron microscope','Light microscope','DNA sequencing'],'X-rays were fired at DNA fibres and the pattern was recorded on film.'),
+mc('In which year was the double helix structure published?','1953',['1903','1953','1983','1853'],'Watson and Crick\'s paper appeared in Nature on 25 April 1953.')];
+const rnaq=[mc('Which base is found in RNA but not in DNA?','Uracil',['Uracil','Thymine','Adenine','Guanine'],'RNA has uracil (U) in place of thymine (T).'),
+mc('What is the sugar in RNA?','Ribose',['Ribose','Deoxyribose','Glucose','Phosphate'],'RNA contains ribose. DNA contains deoxyribose.'),
+mc('Which enzyme makes mRNA during transcription?','RNA polymerase',['RNA polymerase','Ribosome','tRNA','DNA ligase'],'RNA polymerase builds the mRNA by matching RNA bases to the template strand.'),
+mc('The DNA template strand reads T A C. What is the mRNA?','A U G',['A U G','A T G','U A C','T A C'],'T pairs with A, A pairs with U, and C pairs with G.'),
+mc('Where does translation take place?','At a ribosome',['At a ribosome','In the nucleus membrane','In a mitochondrion','On the DNA'],'Ribosomes read the mRNA and build the protein.'),
+mc('What is a codon?','Three bases on mRNA that code for one amino acid',['Three bases on mRNA that code for one amino acid','Three bases on tRNA','A single amino acid','A type of ribosome'],'A codon is a triplet of mRNA bases.'),
+mc('The mRNA codon is GCU. What is the tRNA anticodon?','C G A',['C G A','G C U','C G T','U G C'],'Anticodons pair with codons: G with C, C with G, U with A.'),
+mc('How does a tRNA bind to the mRNA at the ribosome?','Its anticodon pairs with the mRNA codon by complementary base pairing',['Its anticodon pairs with the mRNA codon by complementary base pairing','Its amino acid pairs with the codon','It is joined to the mRNA by peptide bonds','It binds randomly to any codon'],'The anticodon is complementary to the codon, so the pairs form hydrogen bonds (A–U, G–C).'),mc('What does a tRNA molecule carry to the ribosome?','An amino acid',['An amino acid','A copy of the gene','A nucleotide','A ribosome'],'Each tRNA carries one specific amino acid.'),
+mc('What happens when the ribosome reaches a stop codon?','Translation ends and the polypeptide is released',['Translation ends and the polypeptide is released','A new amino acid is added','The mRNA turns into DNA','The ribosome returns to the nucleus'],'Stop codons have no matching tRNA, so the chain is released.'),
+mc('Which molecule leaves the nucleus to carry the code to the ribosome?','mRNA',['mRNA','DNA','tRNA anticodon','Ribosome'],'DNA stays in the nucleus. The mRNA copy leaves through a nuclear pore.'),
+mc('How are amino acids joined in a polypeptide chain?','Peptide bonds',['Peptide bonds','Hydrogen bonds between bases','Phosphate bonds','Ionic bonds'],'Neighbouring amino acids are linked by peptide bonds.')];
+const pool=[...hist,...rnaq,mc(`Which base pairs with ${NAME[b1]} (${b1})?`,B[b1],BS,`${b1} pairs with ${B[b1]}.`),mc(`Which base pairs with ${NAME[b2]} (${b2})?`,B[b2],BS,`${b2} pairs with ${B[b2]}.`),
 mc(`How many hydrogen bonds join ${pr[0]} and ${pr[1]}?`,String(HB(pr[0])),['1','2','3','4'],'A–T has 2 hydrogen bonds; G–C has 3.'),
 mc('Which covalent bond links neighboring nucleotides along one strand?','Phosphodiester bond',['Phosphodiester bond','Hydrogen bond','Ionic bond','Peptide bond'],'The phosphodiester bond joins the 3′ carbon of one sugar to the next phosphate.'),
 mc('Which bond holds the two strands together?','Hydrogen bonds',['Hydrogen bonds','Phosphodiester bonds','Glycosidic bonds','Peptide bonds'],'Hydrogen bonds link complementary bases across the strands.'),
-cl('phosphate','Click the phosphate group.'),cl('sugar','Click the deoxyribose sugar.'),cl('base','Click the nitrogenous base.'),cl('glyco','Click the glycosidic bond between sugar and base.'),cl('oh3','Click the 3′ end where the next nucleotide attaches.'),
+cl('phosphate','Click the phosphate group.'),cl('sugar','Click the deoxyribose sugar.'),cl('base','Click the nitrogenous base.'),cl('glyco','Click the glycosidic bond between sugar and base.'),cl('c3','Click the carbon that bonds to the next nucleotide\'s phosphate.'),
 mc(`A template strand reads 5′-${t4}-3′. What does the complementary strand read 5′→3′?`,rc(t4),[...dd],'Pair each base, then reverse the order because the strands are antiparallel.'),
 mc('How do the two strands run relative to each other?','Antiparallel',['Antiparallel','Parallel','Perpendicular','Randomly'],'One strand runs 5′→3′ while the other runs 3′→5′.'),
 mc('Which end of a strand has a free phosphate group?','5′ end',['5′ end','3′ end','Both ends','Neither end'],'The 5′ end carries the phosphate; the 3′ end has a free –OH.')];
 Q=shuf(pool).slice(0,10);qi=0;sc=0;showQ()}
 function showQ(){const q=Q[qi],el=$('#tq');if(!q){el.innerHTML=`<p style="font-size:20px"><b>Score: ${sc} / ${Q.length}</b></p><p class="sub">${sc>=9?'Excellent work.':sc>=6?'Good. Review the helix and nucleotide tabs, then try again.':'Explore the Helix and Nucleotide tabs, then retake the test.'}</p><button class="btn" id="re">Try new questions</button>`;$('#re').onclick=startTest;return}
-el.innerHTML=`<p class="sub">Question ${qi+1} of ${Q.length}</p><p><b>${q.q}</b></p>${q.click?nuc():`<div class="opts">${q.o.map(o=>`<button>${o}</button>`).join('')}</div>`}<div class="info" id="fb" hidden></div><div class="row"><button class="btn" id="nx" hidden>${qi==Q.length-1?'See score':'Next'}</button></div>`;
+el.innerHTML=`<p class="sub">Question ${qi+1} of ${Q.length}</p><p><b>${q.q}</b></p>${q.click?nuc(1):`<div class="opts">${q.o.map(o=>`<button>${o}</button>`).join('')}</div>`}<div class="info" id="fb" hidden></div><div class="row"><button class="btn" id="nx" hidden>${qi==Q.length-1?'See score':'Next'}</button></div>`;
 let done=0;const fin=ok=>{if(done)return;done=1;sc+=ok;const f=$('#fb');f.hidden=false;f.style.borderColor=ok?'var(--ok)':'var(--bad)';f.textContent=(ok?'Correct. ':'Not quite. ')+q.ex;$('#nx').hidden=false;$('#nx').onclick=()=>{qi++;showQ()}};
 if(q.click)bindNuc(el,(k,p)=>{p.classList.add('sel');fin(k==q.click?1:0)});
 else el.querySelectorAll('.opts button').forEach(b=>b.onclick=()=>{if(done)return;const ok=b.textContent==q.a;b.classList.add(ok?'ok':'bad');if(!ok)[...el.querySelectorAll('.opts button')].find(x=>x.textContent==q.a).classList.add('ok');fin(ok?1:0)})}
 let Qinit=0;
 
-// ---------- sandbox
-let SB=[],sbSel=null,sbId=0;const SW=54,GAP=190,SC=$('#sbx');
+// ---------- sandbox (vertical strands, like the ladder diagram)
+let SB=[],sbSel=null,sbId=0;const SW=52,SR=16,GAP=164,RW=44,RH=30,SC=$('#sbx');
 const disp=s=>s.f?[...s.q].reverse().join(''):s.q,selS=()=>SB.find(s=>s.id==sbSel),sbMsg=t=>$('#smsg').textContent=t;
 const sbPt=e=>{const r=SC.getBoundingClientRect(),v=SC.viewBox.baseVal;return[(e.clientX-r.left)*v.width/r.width,(e.clientY-r.top)*v.height/r.height]};
-function sbAdd(b,x,y){SB.push({id:++sbId,q:b,x:Math.max(14,x),y:Math.min(380,Math.max(100,y)),f:0});sbSel=sbId;sbR()}
-function sbR(){let o='',st={at:0,gc:0,mm:0};
-SB.forEach(s=>{const d=disp(s),n=d.length,f=s.f,x0=s.x,y0=s.y;
-o+=`<g class="sg" data-id="${s.id}"><rect x="${x0-16}" y="${f?y0-92:y0-26}" width="${n*SW+32}" height="118" rx="10" fill="transparent" ${s.id==sbSel?'stroke="var(--ink)" stroke-dasharray="5 4" stroke-width="1.5"':'stroke="none"'}/><line x1="${x0}" y1="${y0}" x2="${x0+n*SW}" y2="${y0}" stroke="var(--bb)" stroke-width="3"/>`;
-for(let k=0;k<n-1;k++){const j=f?n-1-k:k,x1=f?x0+(j-1)*SW+SW-2:x0+j*SW+SW/2,x2=f?x0+j*SW+SW/2:x0+(j+1)*SW+2;o+=`<line x1="${x1}" y1="${y0}" x2="${x2}" y2="${y0}" stroke="var(--ink)" stroke-width="6" stroke-linecap="round"/>`}
-for(let j=0;j<n;j++){const cx=x0+j*SW+SW/2,px=f?cx+SW/2-2:cx-SW/2+2,b=d[j],by=f?y0-82:y0+22;
-o+=`<line x1="${cx}" y1="${y0}" x2="${cx}" y2="${f?y0-22:y0+22}" stroke="var(--ink)" stroke-width="4"/><rect x="${cx-15}" y="${by}" width="30" height="60" rx="6" fill="var(--${b})"/><text x="${cx}" y="${by+36}" text-anchor="middle" font-weight="700" font-size="16" fill="#fff">${b}</text><circle cx="${px}" cy="${y0}" r="8" fill="var(--P)"/><polygon points="${PG(cx,y0,15,f?-1:1)}" fill="var(--S)"/>`}
-o+=`<g font-weight="700" font-size="13" fill="var(--ink)"><text x="${f?x0+n*SW+6:x0-12}" y="${y0+5}" text-anchor="${f?'start':'end'}">5′</text><text x="${f?x0-12:x0+n*SW+6}" y="${y0+5}" text-anchor="${f?'end':'start'}">3′</text></g></g>`});
-SB.forEach(a=>{if(a.f)return;SB.forEach(b=>{if(!b.f||Math.abs(b.y-a.y-GAP)>14)return;const off=Math.round((b.x-a.x)/SW);if(Math.abs(b.x-a.x-off*SW)>10)return;const da=disp(a),db=disp(b);
-for(let i=0;i<da.length;i++){const j=i-off;if(j<0||j>=db.length)continue;const x=a.x+i*SW+SW/2;
-if(B[da[i]]==db[j]){const n=HB(da[i]);n==2?st.at++:st.gc++;for(let k=0;k<n;k++){const xx=x+(k-(n-1)/2)*8;o+=`<line x1="${xx}" y1="${a.y+86}" x2="${xx}" y2="${b.y-86}" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="3 3"/>`}}
-else{st.mm++;o+=`<text x="${x}" y="${a.y+(GAP-4)/2+6}" text-anchor="middle" font-size="22" font-weight="700" fill="var(--bad)">×</text>`}}})});
-SC.innerHTML=o||'<text x="380" y="220" text-anchor="middle" fill="var(--mute)" font-size="18">Drag a nucleotide here</text>';
+const sbClamp=s=>{const n=s.q.length;s.x=Math.min(Math.max(s.x,72),488);s.y=Math.min(Math.max(s.y,56),Math.max(56,496-(n-1)*SW))};
+function sbAdd(b,x,y){const s={id:++sbId,q:b,x,y,f:0};sbClamp(s);SB.push(s);sbSel=s.id;sbR()}
+function sbR(){let o='',st={at:0,gc:0,mm:0};const r=SR;
+SB.forEach(s=>{const d=disp(s),n=d.length,f=s.f,sx=f?-1:1,out=-sx*22,S=[];
+for(let j=0;j<n;j++)S.push(sug(s.x,s.y+j*SW+sx*.31*r,r,sx,sx));
+o+=`<g class="sg" data-id="${s.id}"><rect x="${f?s.x-66:s.x-52}" y="${s.y-46}" width="118" height="${(n-1)*SW+96}" rx="10" fill="transparent" ${s.id==sbSel?'stroke="var(--ink)" stroke-dasharray="5 4" stroke-width="1.5"':'stroke="none"'}/>`;
+for(let j=0;j<n-1;j++)o+=f?bk(S[j+1].c3,S[j].c4,out):bk(S[j].c3,S[j+1].c4,out);
+const i5=f?n-1:0,i3=f?0:n-1,dy=f?26:-26,d3=f?-24:24;
+o+=cap5(S[i5].c4,out,dy)+cap3(S[i3].c3,out,d3);
+for(let j=0;j<n;j++){const b=d[j],c1=S[j].c1,yb=s.y+j*SW,rx=f?c1[0]-4-RW:c1[0]+4;
+o+=`<line x1="${c1[0]}" y1="${yb}" x2="${rx+(f?RW:0)}" y2="${yb}" stroke="var(--ink)" stroke-width="3"/><rect x="${rx}" y="${yb-RH/2}" width="${RW}" height="${RH}" rx="6" fill="var(--${b})"/><text x="${rx+RW/2}" y="${yb+5.5}" text-anchor="middle" font-weight="700" font-size="16" fill="#fff">${b}</text><polygon points="${S[j].pts}" fill="var(--S)" stroke="var(--ink)" stroke-width="1"/>`}
+const P5=[S[i5].c4[0]+out,S[i5].c4[1]+dy],A3=S[i3].c3,E3=[A3[0]+out*.4,A3[1]+d3];
+o+=`<g font-weight="700" font-size="13" fill="var(--ink)" text-anchor="middle"><text x="${P5[0]}" y="${P5[1]+(dy<0?-13:23)}">5′</text><text x="${E3[0]}" y="${E3[1]+(f?-6:17)}">3′</text></g></g>`});
+SB.forEach(a=>{if(a.f)return;SB.forEach(b=>{if(!b.f||Math.abs(b.x-a.x-GAP)>16)return;const off=Math.round((b.y-a.y)/SW);if(Math.abs(b.y-a.y-off*SW)>10)return;const da=disp(a),db=disp(b);
+for(let i=0;i<da.length;i++){const j=i-off;if(j<0||j>=db.length)continue;const y=a.y+i*SW,x1=a.x+.95*SR+4+RW+2,x2=b.x-.95*SR-4-RW-2;
+if(B[da[i]]==db[j]){const n=HB(da[i]);n==2?st.at++:st.gc++;for(let k=0;k<n;k++){const yy=y+(k-(n-1)/2)*7;o+=`<line x1="${x1}" y1="${yy}" x2="${x2}" y2="${yy}" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="3 3"/>`}}
+else{st.mm++;o+=`<text x="${(x1+x2)/2}" y="${y+7}" text-anchor="middle" font-size="22" font-weight="700" fill="var(--bad)">×</text>`}}})});
+SC.innerHTML=o||'<text x="280" y="280" text-anchor="middle" fill="var(--mute)" font-size="18">Drag a nucleotide here</text>';
 $('#sbinfo').innerHTML=SB.length?SB.map(s=>`5′-${s.q}-3′: ${s.q.length-1} phosphodiester bond(s)`).join('<br>')+`<br>${st.at} A–T pair(s), ${st.gc} G–C pair(s): ${st.at*2+st.gc*3} hydrogen bonds`+(st.mm?`<br>${st.mm} mismatch(es): no hydrogen bonds there`:''):'Nothing here yet. Drag a nucleotide onto the canvas.';
 return st}
 SC.addEventListener('pointerdown',e=>{const g=e.target.closest('.sg');if(!g)return;e.preventDefault();const s=SB.find(x=>x.id==g.dataset.id),[px,py]=sbPt(e),dx=s.x-px,dy=s.y-py;let mvd=0;sbSel=s.id;
 const mv=v=>{const[x,y]=sbPt(v);s.x=x+dx;s.y=y+dy;mvd=1;sbR()};
 addEventListener('pointermove',mv);addEventListener('pointerup',()=>{removeEventListener('pointermove',mv);mvd?sbDrop(s):sbR()},{once:true});sbR()});
-function sbDrop(s){const n=disp(s).length;s.x=Math.min(Math.max(s.x,16),760-n*SW-16);s.y=Math.min(Math.max(s.y,100),380);let m='';
-for(const o of SB){if(o===s)continue;const L=s.x<=o.x?s:o,R=L===s?o:s,ln=disp(L).length;
-if(Math.abs(R.x-(L.x+ln*SW))<28&&Math.abs(R.y-L.y)<28){
-if(L.f==R.f){L.q=L.f?R.q+L.q:L.q+R.q;SB=SB.filter(z=>z!==R);sbSel=L.id;sbR();sbMsg(`Phosphodiester bond formed (covalent). The strand now reads 5′-${L.q}-3′.`);return}
+function sbDrop(s){sbClamp(s);let m='';
+for(const o of SB){if(o===s)continue;const U=s.y<=o.y?s:o,L=U===s?o:s,un=disp(U).length;
+if(Math.abs(L.y-(U.y+un*SW))<26&&Math.abs(L.x-U.x)<26){
+if(U.f==L.f){U.q=U.f?L.q+U.q:U.q+L.q;SB=SB.filter(z=>z!==L);sbSel=U.id;sbClamp(U);sbR();sbMsg(`Phosphodiester bond formed (covalent) between the sugar and the next phosphate. The strand now reads 5′-${U.q}-3′.`);return}
 m='These pieces run in opposite directions, so they cannot be joined end to end. Flip one, then try again.'}}
-if(!m)for(const o of SB){if(o===s||o.f==s.f)continue;const a=s.f?o:s,b=s.f?s:o,la=disp(a).length,lb=disp(b).length;if(Math.abs(b.y-a.y-GAP)>45)continue;const off=Math.round((b.x-a.x)/SW);if(Math.abs(b.x-a.x-off*SW)>27||off>la-1||off<-(lb-1))continue;
-if(s===b){b.x=a.x+off*SW;b.y=a.y+GAP}else{a.x=b.x-off*SW;a.y=b.y-GAP}m='SNAP';break}
-if(!m)for(const o of SB){if(o!==s&&o.f==s.f&&Math.abs(o.y-s.y)>60&&Math.abs(o.y-s.y)<260&&Math.abs(o.x-s.x)<disp(o).length*SW){m='Both strands have their bases pointing the same way, so they cannot pair. Flip one so the bases face each other.';break}}
+if(!m)for(const o of SB){if(o===s||o.f==s.f)continue;const a=s.f?o:s,b=s.f?s:o,la=disp(a).length,lb=disp(b).length;if(Math.abs(b.x-a.x-GAP)>50)continue;const off=Math.round((b.y-a.y)/SW);if(Math.abs(b.y-a.y-off*SW)>26||off>la-1||off<-(lb-1))continue;
+if(s===b){b.x=a.x+GAP;b.y=a.y+off*SW}else{a.x=b.x-GAP;a.y=b.y-off*SW}m='SNAP';break}
+if(!m)for(const o of SB){if(o!==s&&o.f==s.f&&Math.abs(o.x-s.x)>80&&Math.abs(o.x-s.x)<GAP+90&&s.y<o.y+disp(o).length*SW&&o.y<s.y+disp(s).length*SW){m='Both strands have their bases pointing the same way, so they cannot pair. Flip one (rotate it 180°) so the bases face each other.';break}}
 const st=sbR();if(m=='SNAP')m=st.mm?'Mismatch: those bases cannot form hydrogen bonds. A pairs with T and G pairs with C.':st.at+st.gc?'Complementary! Hydrogen bonds hold the pairs together, and the strands run in opposite directions (antiparallel).':'Slide the strands so some bases line up.';sbMsg(m)}
-$('#sflip').onclick=()=>{const s=selS();if(!s)return sbMsg('Select a strand first.');s.f=s.f?0:1;sbR();sbMsg('Flipped: the 5′ and 3′ ends swapped sides.')};
-$('#ssplit').onclick=()=>{const s=selS();if(!s||s.q.length<2)return sbMsg('Select a strand with two or more nucleotides.');const d=disp(s);SB=SB.filter(z=>z!==s);[...d].forEach((b,i)=>SB.push({id:++sbId,q:b,x:s.x+i*(SW+10),y:s.y,f:s.f}));sbSel=null;sbR();sbMsg('Backbone bonds broken. Enzymes can do this in cells.')};
+$('#sflip').onclick=()=>{const s=selS();if(!s)return sbMsg('Select a strand first.');s.f=s.f?0:1;sbClamp(s);sbR();sbMsg('Rotated 180°: the 5′ and 3′ ends swapped and the bases now point the other way.')};
+$('#ssplit').onclick=()=>{const s=selS();if(!s||s.q.length<2)return sbMsg('Select a strand with two or more nucleotides.');const d=disp(s);SB=SB.filter(z=>z!==s);[...d].forEach((b,i)=>{const p={id:++sbId,q:b,x:s.x,y:s.y+i*(SW+14),f:s.f};sbClamp(p);SB.push(p)});sbSel=null;sbR();sbMsg('Backbone bonds broken. Enzymes can do this in cells.')};
 $('#sdel').onclick=()=>{SB=SB.filter(z=>z.id!=sbSel);sbSel=null;sbR();sbMsg('')};
 $('#sclr').onclick=()=>{SB=[];sbSel=null;sbR();sbMsg('')};
-$('#sbpal').innerHTML=BS.map(b=>`<div class="tile" data-b="${b}"><svg viewBox="0 0 60 66" width="44"><rect x="21" y="26" width="18" height="36" rx="4" fill="var(--${b})"/><line x1="30" y1="14" x2="30" y2="26" stroke="var(--ink)" stroke-width="3"/><circle cx="8" cy="14" r="6" fill="var(--P)"/><polygon points="${PG(30,14,11,1)}" fill="var(--S)"/><text x="30" y="49" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">${b}</text></svg>${NAME[b]}</div>`).join('');
-document.querySelectorAll('#sbpal .tile').forEach(t=>{const b=t.dataset.b;drag(t,(d,v)=>{if(d.id=='sbx'){const[x,y]=sbPt(v);sbAdd(b,x-SW/2,y-20);sbMsg('')}});t.onclick=()=>sbAdd(b,40+Math.random()*320,110+Math.random()*220)});
+$('#sbpal').innerHTML=BS.map(b=>`<div class="tile" data-b="${b}"><svg viewBox="0 0 64 52" width="54"><circle cx="8" cy="36" r="6" fill="var(--P)"/><polyline points="19,34 8,36" stroke="var(--ink)" stroke-width="2" fill="none"/><polygon points="${sug(26,24,12,1,1).pts}" fill="var(--S)"/><line x1="37.4" y1="20.3" x2="40" y2="20.3" stroke="var(--ink)" stroke-width="2"/><rect x="40" y="12" width="20" height="16" rx="3" fill="var(--${b})"/><text x="50" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">${b}</text></svg>${NAME[b]}</div>`).join('');
+document.querySelectorAll('#sbpal .tile').forEach(t=>{const b=t.dataset.b;drag(t,(d,v)=>{if(d.id=='sbx'){const[x,y]=sbPt(v);sbAdd(b,x-20,y-8);sbMsg('')}});t.onclick=()=>sbAdd(b,120+Math.random()*320,70+Math.random()*250)});
 sbR();
+
+// ---------- history
+const HS=[
+{y:'1944–1952',l:'1944',t:'Is DNA the code?',b:'Scientists knew cells pass on traits, but many thought proteins did it. In 1944 Avery, MacLeod and McCarty showed that DNA carried the information in bacteria, and experiments by Hershey and Chase in 1952 backed this up. Now DNA\'s shape mattered: how could one molecule store a code and be copied?'},
+{y:'1950',l:'1950',t:'Chargaff\'s rules',b:'Erwin Chargaff measured the bases in DNA from many species. The amount of A always matched the amount of T, and G matched C, even though the A+T to G+C balance differed between species. This was a big clue that A goes with T and G goes with C.'},
+{y:'1952',l:'1952',t:'Photo 51',b:'At King\'s College London, Rosalind Franklin and her student Raymond Gosling fired X-rays at thin fibres of DNA and recorded the pattern on film. The photograph numbered 51 in their series was exceptionally clear. Its X shape showed that DNA is a helix, and the spacing of the marks gave measurements of the helix.'},
+{y:'Early 1953',l:'Early 1953',t:'The clues come together',b:'James Watson and Francis Crick were trying to build a model of DNA at Cambridge University. In January 1953 Maurice Wilkins showed Watson Photo 51. Franklin did not know it was being shown. Her photo and measurements helped Watson and Crick work out the size of the helix, that the sugar–phosphate backbones are on the outside, and that the two strands run in opposite directions.'},
+{y:'Spring 1953',l:'Spring 1953',t:'Building the model',b:'Watson and Crick cut out shapes of the bases and built a model from metal plates and rods. They found that A with T and G with C make pairs of exactly the same width, which fits Chargaff\'s rules and the X-ray measurements. The pairs are held by hydrogen bonds, and each backbone is held together by covalent bonds.'},
+{y:'25 April 1953',l:'Apr 1953',t:'Published',b:'The journal Nature printed three papers together: Watson and Crick\'s double helix model, one from Wilkins and his colleagues, and one from Franklin and Gosling with the X-ray evidence. Watson and Crick added that the base pairing hints at how DNA could be copied.'},
+{y:'1958–1962',l:'1958–62',t:'Recognition',b:'Rosalind Franklin died in 1958, aged 37. In 1962 Watson, Crick and Wilkins shared the Nobel Prize in Physiology or Medicine, and Nobel Prizes are not given after death. Today Franklin and Gosling\'s work is widely seen as essential to the discovery, and historians still discuss how the credit should be shared.'}];
+let hi=0;
+function histR(){const h=HS[hi];$('#hcard').innerHTML=`<div class="sub" style="margin:0">${h.y}</div><h3 style="margin:2px 0 6px;font-size:18px">${h.t}</h3><div>${h.b}</div>`;document.querySelectorAll('#htl .chip').forEach((c,i)=>c.setAttribute('aria-pressed',i==hi))}
+$('#htl').innerHTML=HS.map((h,i)=>`<button class="chip" data-i="${i}" aria-pressed="false">${h.l}</button>`).join('');
+$('#htl').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;hi=+b.dataset.i;histR()};
+$('#hprev').onclick=()=>{hi=Math.max(0,hi-1);histR()};$('#hnext').onclick=()=>{hi=Math.min(HS.length-1,hi+1);histR()};histR();
+const PH={x:'An X shape is the signature of a helix. A flat or straight molecule would not make it. This told scientists that DNA is a helix.',l:'The horizontal rows are called layer lines. The closer together they are, the longer one full turn of the helix is. Franklin measured them to work out that one turn is about 3.4 nm long.',a:'The strong arcs at the top and bottom come from the bases stacked like a pile of coins, about 0.34 nm apart. With 10 base pairs in each turn, 10 × 0.34 nm = 3.4 nm.'};
+let ph51=null;
+$('#pchips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;ph51=ph51==b.dataset.h?null:b.dataset.h;document.querySelectorAll('#pchips .chip').forEach(x=>x.setAttribute('aria-pressed',x.dataset.h==ph51));if(ph51)$('#p51').dataset.h=ph51;else $('#p51').removeAttribute('data-h');$('#pinfo2').textContent=ph51?PH[ph51]:'Select a clue.'};
+function chR(){const a=+$('#chA').value,g=50-a;$('#chAv').textContent=a;
+$('#chBar').innerHTML=[['A',a],['T',a],['G',g],['C',g]].map(([k,v])=>`<div style="width:${v}%;background:var(--${k})">${k} ${v}%</div>`).join('');
+$('#chInfo').textContent=`A ${a}% = T ${a}%, and G ${g}% = C ${g}%. All four add up to 100%. The amounts match in pairs because A always pairs with T and G always pairs with C.`}
+$('#chA').oninput=chR;chR();
+// ---------- spot the mistake
+let SP={};
+const SPK={pair:'Wrong base pair: A always pairs with T, and G always pairs with C.',hb:'Wrong number of hydrogen bonds: A–T has 2 and G–C has 3.',uracil:'Uracil (U) is only found in RNA. DNA has thymine (T) instead.',phos:'A phosphate is missing from the sugar–phosphate backbone.',dir:'The strands must be antiparallel. If the left strand is 5′ at the top, the right strand must be 3′ at the top.'};
+const SPH={pair:'base pairing',hb:'hydrogen bonds',uracil:'which bases belong in DNA',phos:'the sugar–phosphate backbone',dir:'the strand directions'};
+const bkx=(A,B,ox)=>bk(A,B,ox).split('<g class="g p">')[0];
+function spNew(){const n=6,L=Array.from({length:n},()=>rnd(BS));if(!L.some(b=>b=='A'||b=='T'))L[0]='A';
+const R=L.map(b=>B[b]),dl=[...L],dr=[...R],hbx={},phos={},errs=[],kinds=shuf(['pair','hb','uracil','phos','dir']).slice(0,3);
+let rows=[0,1,2,3,4,5];
+if(kinds.includes('uracil')){const c=[];for(let i=0;i<n;i++){if(L[i]=='T')c.push([i,0]);if(R[i]=='T')c.push([i,1])}const [i,s]=rnd(c);(s?dr:dl)[i]='U';errs.push({tg:'row'+i,k:'uracil',t:`Row ${i+1}: ${SPK.uracil}`});rows=rows.filter(x=>x!=i);rows=shuf(rows)}else rows=shuf(rows);
+kinds.forEach(k=>{if(k=='pair'){const i=rows.pop();dr[i]=rnd(BS.filter(x=>x!=R[i]));errs.push({tg:'row'+i,k,t:`Row ${i+1}: ${L[i]} is paired with ${dr[i]}. ${SPK.pair}`})}
+else if(k=='hb'){const i=rows.pop();hbx[i]=HB(L[i])==2?3:2;errs.push({tg:'row'+i,k,t:`Row ${i+1}: ${L[i]}–${R[i]} is drawn with ${hbx[i]} hydrogen bonds. ${SPK.hb}`})}
+else if(k=='phos'){const i=Math.random()*(n-1)|0,s=Math.random()<.5?'L':'R';phos[s+i]=1;errs.push({tg:s+i,k,t:`${s=='L'?'Left':'Right'} strand: ${SPK.phos}`})}
+else if(k=='dir')errs.push({tg:'dir',k,t:SPK.dir})});
+SP={n,L,dl,dr,hbx,phos,errs,marks:new Set(),done:false};$('#spmsg').textContent='';$('#spex').innerHTML='';spR()}
+function spR(){const {n,dl,dr,hbx,phos}=SP,r=20,Y=i=>70+i*60,xl=96,xr=312,W=56,H=34,Sl=[],Sr=[],col=b=>`var(--${b})`;let o='',h='';
+const st=tg=>{const e=SP.errs.some(x=>x.tg==tg),m=SP.marks.has(tg);return SP.done?(m?(e?'ok':'no'):(e?'miss':'')):(m?'m':'')};
+const hs=(tg,a)=>`<${a} class="hs" data-tg="${tg}" data-s="${st(tg)}"/>`;
+for(let i=0;i<n;i++){Sl.push(sug(xl,Y(i)+.31*r,r,1,1));Sr.push(sug(xr,Y(i)-.31*r,r,-1,-1))}
+for(let i=0;i<n-1;i++){o+=(phos['L'+i]?bkx:bk)(Sl[i].c3,Sl[i+1].c4,-22)+(phos['R'+i]?bkx:bk)(Sr[i+1].c3,Sr[i].c4,22);
+h+=hs('L'+i,`circle cx="${(Sl[i].c3[0]+Sl[i+1].c4[0])/2-22}" cy="${(Sl[i].c3[1]+Sl[i+1].c4[1])/2}" r="12"`)+hs('R'+i,`circle cx="${(Sr[i+1].c3[0]+Sr[i].c4[0])/2+22}" cy="${(Sr[i+1].c3[1]+Sr[i].c4[1])/2}" r="12"`)}
+o+=cap5(Sl[0].c4,-22,-26)+cap3(Sl[n-1].c3,-22,24)+cap3(Sr[0].c3,22,-24)+cap5(Sr[n-1].c4,22,26);
+for(let i=0;i<n;i++){const y=Y(i),lx=Sl[i].c1[0],rx=Sr[i].c1[0],a=dl[i],b=dr[i],k=hbx[i]??HB(SP.L[i]);
+o+=`<line x1="${lx}" y1="${y}" x2="${lx+4}" y2="${y}" stroke="var(--ink)" stroke-width="3"/><rect x="${lx+4}" y="${y-H/2}" width="${W}" height="${H}" rx="6" fill="${col(a)}"/><text x="${lx+4+W/2}" y="${y+6}" text-anchor="middle" font-weight="700" font-size="17" fill="#fff">${a}</text><line x1="${rx}" y1="${y}" x2="${rx-4}" y2="${y}" stroke="var(--ink)" stroke-width="3"/><rect x="${rx-4-W}" y="${y-H/2}" width="${W}" height="${H}" rx="6" fill="${col(b)}"/><text x="${rx-4-W/2}" y="${y+6}" text-anchor="middle" font-weight="700" font-size="17" fill="#fff">${b}</text>`;
+for(let q=0;q<k;q++){const yy=y+(q-(k-1)/2)*7;o+=`<line x1="${lx+4+W+2}" y1="${yy}" x2="${rx-4-W-2}" y2="${yy}" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="3 3"/>`}
+o+=`<polygon points="${Sl[i].pts}" fill="var(--S)" stroke="var(--ink)" stroke-width="1.2"/><polygon points="${Sr[i].pts}" fill="var(--S)" stroke="var(--ink)" stroke-width="1.2"/>`;
+h=hs('row'+i,`rect x="${lx+2}" y="${y-17}" width="${rx-lx-4}" height="34" rx="6"`)+h}
+const P5l=[Sl[0].c4[0]-22,Sl[0].c4[1]-26],A3l=Sl[n-1].c3,A3r=Sr[0].c3,P5r=[Sr[n-1].c4[0]+22,Sr[n-1].c4[1]+26],bad=SP.errs.some(e=>e.tg=='dir'),tt=bad?'5′':'3′',bt=bad?'3′':'5′';
+o+=`<g font-weight="700" font-size="14" fill="var(--ink)" text-anchor="middle"><text x="${P5l[0]}" y="${P5l[1]-13}">5′</text><text x="${A3l[0]-8.8}" y="${A3l[1]+41}">3′</text><text x="${A3r[0]+8.8}" y="${A3r[1]-30}">${tt}</text><text x="${P5r[0]}" y="${P5r[1]+23}">${bt}</text></g>`;
+h+=hs('dir',`rect x="${A3r[0]-6}" y="${A3r[1]-52}" width="30" height="26" rx="6"`)+hs('dir',`rect x="${P5r[0]-14}" y="${P5r[1]+4}" width="30" height="26" rx="6"`);
+$('#spsvg').innerHTML=o+h;
+$('#spsvg').querySelectorAll('.hs').forEach(e=>e.onclick=()=>{if(SP.done)return;const t=e.dataset.tg;SP.marks.has(t)?SP.marks.delete(t):SP.marks.add(t);spR()})}
+$('#spcheck').onclick=()=>{if(SP.done)return;SP.done=true;const f=SP.errs.filter(e=>SP.marks.has(e.tg)).length,w=[...SP.marks].filter(t=>!SP.errs.some(e=>e.tg==t)).length;
+$('#spmsg').textContent=`You found ${f} of ${SP.errs.length} mistakes${w?` and marked ${w} place${w>1?'s':''} that ${w>1?'were':'was'} actually fine`:''}.`;
+$('#spex').innerHTML='<ul>'+SP.errs.map(e=>`<li>${e.t}</li>`).join('')+'</ul>';spR()};
+$('#sphint').onclick=()=>{if(SP.done)return;const m=SP.errs.filter(e=>!SP.marks.has(e.tg));$('#spmsg').textContent=m.length?`Hint: one mistake is about ${SPH[rnd(m).k]}.`:'You have marked all three. Press Check.'};
+$('#spnew').onclick=spNew;
+spNew();
+// ---------- DNA vs RNA
+const CF={sugar:['Sugar','Deoxyribose (it has one less oxygen atom)','Ribose'],strands:['Strands','Two strands joined by hydrogen bonds, twisted into a double helix','One single strand'],bases:['Bases','A, T, G and C','A, U, G and C. Uracil (U) replaces thymine (T)'],length:['Length','Very long: one DNA molecule can hold thousands of genes','Short: a copy of just one gene'],where:['Location','Stays in the nucleus','Made in the nucleus, then works in the cytoplasm'],job:['Job','Stores the genetic code safely','Carries the code (mRNA) and helps to build proteins (tRNA, rRNA)']};
+let cfk=null;
+function cmpSvg(rna){const r=13,n=4,Y=i=>45+i*48,xl=rna?60:38,xr=162,W=34,H=24,Sl=[],Sr=[],seq=rna?'AUGC':'ATGC',cb=b=>`var(--${b})`;let bb='',bs='',sg='',bx='';
+for(let i=0;i<n;i++){Sl.push(sug(xl,Y(i)+.31*r,r,1,1));if(!rna)Sr.push(sug(xr,Y(i)-.31*r,r,-1,-1))}
+for(let i=0;i<n-1;i++){bb+=bk(Sl[i].c3,Sl[i+1].c4,-22);if(!rna)bb+=bk(Sr[i+1].c3,Sr[i].c4,22)}
+bb+=cap5(Sl[0].c4,-22,-26)+cap3(Sl[n-1].c3,-22,24);if(!rna)bb+=cap3(Sr[0].c3,22,-24)+cap5(Sr[n-1].c4,22,26);
+for(let i=0;i<n;i++){const y=Y(i),lx=Sl[i].c1[0],b=seq[i];
+bx+=`<line x1="${lx}" y1="${y}" x2="${lx+3}" y2="${y}" stroke="var(--ink)" stroke-width="3"/><rect x="${lx+3}" y="${y-H/2}" width="${W}" height="${H}" rx="5" fill="${cb(b)}"/><text x="${lx+3+W/2}" y="${y+5}" text-anchor="middle" font-weight="700" font-size="14" fill="#fff">${b}</text>`;
+if(!rna){const rx=Sr[i].c1[0],c=B[b],k=HB(b);bx+=`<line x1="${rx}" y1="${y}" x2="${rx-3}" y2="${y}" stroke="var(--ink)" stroke-width="3"/><rect x="${rx-3-W}" y="${y-H/2}" width="${W}" height="${H}" rx="5" fill="${cb(c)}"/><text x="${rx-3-W/2}" y="${y+5}" text-anchor="middle" font-weight="700" font-size="14" fill="#fff">${c}</text>`;
+for(let q=0;q<k;q++){const yy=y+(q-(k-1)/2)*6;bx+=`<line x1="${lx+3+W+2}" y1="${yy}" x2="${rx-3-W-2}" y2="${yy}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="3 3"/>`}
+sg+=`<polygon points="${Sr[i].pts}" fill="var(--S)" stroke="var(--ink)" stroke-width="1.2"/>`}
+sg+=`<polygon points="${Sl[i].pts}" fill="var(--S)" stroke="var(--ink)" stroke-width="1.2"/>`}
+return `<g class="cg c2">${bb}</g><g class="cg cb">${bx}</g><g class="cg cs">${sg}</g>`+(rna?`<text x="${xr-20}" y="118" text-anchor="middle" font-size="12" fill="var(--mute)">single</text><text x="${xr-20}" y="132" text-anchor="middle" font-size="12" fill="var(--mute)">strand</text>`:'')}
+function cfR(){$('#cmpD').innerHTML=cmpSvg(0);$('#cmpR').innerHTML=cmpSvg(1);
+['#cmpD','#cmpR'].forEach(s=>cfk&&'sugar strands bases'.includes(cfk)?$(s).setAttribute('data-h',cfk):$(s).removeAttribute('data-h'));
+$('#cfchips').innerHTML=Object.keys(CF).map(k=>`<button class="chip" data-k="${k}" aria-pressed="${cfk==k}">${CF[k][0]}</button>`).join('');
+$('#cfchips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{cfk=cfk==b.dataset.k?null:b.dataset.k;cfR()});
+$('#cfD').textContent=cfk?CF[cfk][1]:'Pick a feature above.';$('#cfR').textContent=cfk?CF[cfk][2]:'Pick a feature above.'}
+cfR();
+const SORT=[['It contains thymine (T)','DNA'],['It contains uracil (U)','RNA'],['Its sugar is ribose','RNA'],['Its sugar is deoxyribose','DNA'],['It is a double helix','DNA'],['It is a single strand','RNA'],['It contains adenine, guanine and cytosine','Both'],['It has a sugar–phosphate backbone','Both'],['It is made of nucleotides','Both'],['It carries a copy of a gene to a ribosome','RNA'],['It stores genetic information long term','DNA'],['It contains phosphate groups','Both']];
+let SQ=[],si=0,ss=0,sdone=null;
+function sortNew(){SQ=shuf(SORT).slice(0,8);si=0;ss=0;sdone=null;sortR()}
+function sortR(){const el=$('#sortq');if(si>=SQ.length){el.innerHTML=`<p><b>Score: ${ss} / ${SQ.length}</b></p><button class="btn" id="sortagain">Play again</button>`;$('#sortagain').onclick=sortNew;return}
+const q=SQ[si];el.innerHTML=`<p>${si+1}/${SQ.length}: <b>${q[0]}</b></p><div class="row">${['DNA','RNA','Both'].map(a=>`<button class="btn alt" data-a="${a}" ${sdone?'disabled':''}>${a}</button>`).join('')}</div><div class="msg" id="sortmsg">${sdone?sdone:''}</div>${sdone?'<button class="btn" id="sortnext">Next</button>':''}`;
+el.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{const ok=b.dataset.a==q[1];if(ok)ss++;sdone=ok?'Correct!':`Not quite: the answer is ${q[1]}.`;sortR()});
+if(sdone)$('#sortnext').onclick=()=>{si++;sdone=null;sortR()}}
+sortNew();
+// ---------- transcription
+const RB={A:'U',T:'A',G:'C',C:'G'},RNAB=['A','U','G','C'];
+let TR={};
+function trNew(){TR={n:8,t:Array.from({length:8},()=>rnd(BS)),st:0,p:0,m:[],msg:'Step 1: RNA polymerase attaches to the start of the gene. Press the button to unzip the DNA.'};trR()}
+function trR(){const {n,t,st,p,m}=TR,X=i=>88+i*54,W=44,H=28,c=Math.min(p,n-1);let o='',hb='';
+const open=i=>(st==1||st==2)&&Math.abs(i-c)<=1,yc=i=>open(i)?52:70,yt=i=>open(i)?136:118,ym=212,cb=b=>`var(--${b})`;
+const box=(x,y,b)=>`<rect x="${x-W/2}" y="${y-H/2}" width="${W}" height="${H}" rx="6" fill="${cb(b)}"/><text x="${x}" y="${y+6}" text-anchor="middle" font-weight="700" font-size="16" fill="#fff">${b}</text>`;
+for(let i=0;i<n;i++){const x=X(i);if(!open(i)){const k=HB(t[i]);for(let q=0;q<k;q++){const dx=(q-(k-1)/2)*7;hb+=`<line x1="${x+dx}" y1="${yc(i)+H/2+2}" x2="${x+dx}" y2="${yt(i)-H/2-2}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="3 3"/>`}}
+o+=box(x,yc(i),B[t[i]])+box(x,yt(i),t[i])}
+o+=hb;
+o+=`<g font-weight="700" font-size="13" fill="var(--mute)" text-anchor="middle"><text x="30" y="75">5′</text><text x="534" y="75">3′</text><text x="30" y="123">3′</text><text x="534" y="123">5′</text></g>`;
+if(st==1&&p<n)o+=`<rect x="${X(p)-W/2-4}" y="${yt(p)-H/2-4}" width="${W+8}" height="${H+8}" rx="9" fill="none" stroke="#ffd166" stroke-width="3"/>`;
+if(st<3)o+=`<rect x="${X(c)-84}" y="30" width="168" height="142" rx="30" fill="rgba(124,92,214,.16)" stroke="var(--P)" stroke-width="2.5" pointer-events="none"/><text x="${X(c)}" y="164" text-anchor="middle" font-weight="700" font-size="12" fill="var(--P)">RNA polymerase</text>`;
+const my=st==3?236:ym;
+m.forEach((b,i)=>{const x=X(i);o+=box(x,my,b);if(st<3&&i>=p-2)o+=`<line x1="${x}" y1="${yt(i)+H/2+2}" x2="${x}" y2="${my-H/2-2}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="3 3"/>`;
+if(i<m.length-1){const x2=X(i+1);o+=`<path d="M${x} ${my+H/2} V${my+H/2+9} H${x2} V${my+H/2}" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/><circle cx="${(x+x2)/2}" cy="${my+H/2+9}" r="7" fill="var(--P)"/><text x="${(x+x2)/2}" y="${my+H/2+12}" text-anchor="middle" font-size="8" font-weight="700" fill="#fff">P</text>`}});
+if(m.length){o+=`<text x="30" y="${my+5}" text-anchor="middle" font-weight="700" font-size="13" fill="var(--mute)">5′</text>`;if(st>=2)o+=`<text x="534" y="${my+5}" text-anchor="middle" font-weight="700" font-size="13" fill="var(--mute)">3′</text>`}
+if(st==1&&p<n)o+=`<rect x="${X(p)-W/2}" y="${my-H/2}" width="${W}" height="${H}" rx="6" fill="none" stroke="var(--mute)" stroke-width="2" stroke-dasharray="5 4"/><text x="${X(p)}" y="${my+6}" text-anchor="middle" font-weight="700" font-size="16" fill="var(--mute)">?</text>`;
+if(st==3)o+=`<text x="280" y="${my+44}" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">mRNA leaves the nucleus through a nuclear pore</text>`;
+$('#trsvg').innerHTML=o;
+$('#trstep').innerHTML=['RNA polymerase unzips the DNA','Match RNA bases to the template strand','The mRNA is released and the DNA zips up again'].map((s,i)=>`<li class="${(st==0?0:st<2?1:st==2?1:2)>i?'done':(st==0?0:st<2?1:st==2?1:2)==i?'now':''}">${s}</li>`).join('');
+$('#trpal').innerHTML=RNAB.map(b=>`<button class="bx" style="background:var(--${b=='U'?'U':b});width:56px" data-b="${b}" ${st==1?'':'disabled'}>${b}</button>`).join('');
+$('#trpal').querySelectorAll('.bx').forEach(b=>b.onclick=()=>trPick(b.dataset.b));
+const go=$('#trgo');go.style.display=st==1?'none':'';go.textContent=['Start: unzip the DNA','','Release the mRNA','Go to Translation'][st];
+$('#trmsg').textContent=TR.msg}
+function trPick(b){if(TR.st!=1)return;const need=RB[TR.t[TR.p]];
+if(b==need){TR.m.push(b);TR.p++;TR.msg=`Correct: template ${TR.t[TR.p-1]} pairs with RNA ${b}. `+(TR.p<TR.n?'The polymerase moves along. Pair the next base.':'The end of the gene is reached, so the mRNA is complete.');if(TR.p==TR.n)TR.st=2;trR()}
+else{TR.msg=`Not quite. Check the pairing key: RNA has no T, so A pairs with U.`;trR();$('#trpal').querySelector(`[data-b="${b}"]`).classList.add('shake')}}
+$('#trgo').onclick=()=>{if(TR.st==0){TR.st=1;TR.msg='Step 2: the DNA is unzipped. Pick the RNA base that pairs with the highlighted template base.'}else if(TR.st==2){TR.st=3;TR.msg='Step 3: the mRNA is a single strand and leaves the nucleus. The DNA stays behind and zips up again.'}else if(TR.st==3){document.querySelectorAll('nav button')[0];const b=document.querySelector('nav button[data-t="10"]');b&&b.click();return}trR()};
+$('#trkeyb').onclick=()=>{const k=$('#trkey');k.hidden=!k.hidden};
+$('#trnew').onclick=trNew;
+trNew();
+// ---------- translation
+const GC='FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG',AB={F:'Phe',L:'Leu',S:'Ser',Y:'Tyr',C:'Cys',W:'Trp',P:'Pro',H:'His',Q:'Gln',R:'Arg',I:'Ile',M:'Met',T:'Thr',N:'Asn',K:'Lys',V:'Val',A:'Ala',D:'Asp',E:'Glu',G:'Gly'},CT={};
+[...'UCAG'].forEach((a,i)=>[...'UCAG'].forEach((b,j)=>[...'UCAG'].forEach((c,k)=>{const l=GC[i*16+j*4+k];if(l!='*')CT[a+b+c]=AB[l]})));
+const STOPS=['UAA','UAG','UGA'],CM={A:'U',U:'A',G:'C',C:'G'};
+const AAN={Phe:'phenylalanine',Leu:'leucine',Ser:'serine',Tyr:'tyrosine',Cys:'cysteine',Trp:'tryptophan',Pro:'proline',His:'histidine',Gln:'glutamine',Arg:'arginine',Ile:'isoleucine',Met:'methionine',Thr:'threonine',Asn:'asparagine',Lys:'lysine',Val:'valine',Ala:'alanine',Asp:'aspartic acid',Glu:'glutamic acid',Gly:'glycine'},AAC=['#e76f51','#2a9d8f','#c99a10','#5b82b0','#b56576','#6f9a45'];
+const aac=a=>AAC[[...a].reduce((s,c)=>s+c.charCodeAt(0),0)%6],acd=c=>[...c].map(x=>CM[x]).join('');
+let TL={};
+function tlNew(){const sense=Object.keys(CT).filter(c=>c!='AUG');TL={st:'which',cod:['AUG',...shuf(sense).slice(0,4),rnd(STOPS)],k:0,chain:[],mx:150,my:215,busy:false,dock:null,opts:[],rev:{},pos:0,scrub:null,tin:1,bp:1,tout:0,msg:'The gene has been copied into mRNA (transcription). Which molecule leaves the nucleus: the DNA or the mRNA?'};tlR()}
+function tlOpts(){const c=TL.cod[TL.k];if(!c||STOPS.includes(c)){TL.opts=[];return}const w=[];shuf(Object.keys(CT)).forEach(x=>{if(w.length<2&&CT[x]!=CT[c]&&!w.some(y=>CT[y]==CT[x]))w.push(x)});TL.opts=shuf([c,...w]).map(x=>({ac:acd(x),aa:CT[x]}))}
+function tween(a,b,ms,done){let k=0;const N=16,iv=setInterval(()=>{k++;TL.mx=a[0]+(b[0]-a[0])*k/N;TL.my=a[1]+(b[1]-a[1])*k/N;tlR();if(k>=N){clearInterval(iv);done&&done()}},ms/N)}
+const tlb=b=>`var(--${b})`;
+function tlA(){const st=TL.st,PO=[[276,125],[271,216]];let o=`<rect x="6" y="6" width="548" height="308" rx="40" fill="rgba(255,190,120,.12)" stroke="var(--bb)" stroke-width="3"/><text x="440" y="298" text-anchor="middle" font-size="13" fill="var(--mute)">Cytoplasm</text><circle cx="165" cy="165" r="118" fill="rgba(110,160,220,.2)" stroke="var(--bb)" stroke-width="5"/><text x="165" y="78" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">Nucleus</text>`;
+let a='',b='',r='';for(let x=88;x<=212;x+=4){const y=130+13*Math.sin((x-88)/9);a+=`${x},${y.toFixed(1)} `;b+=`${x},${(260-y).toFixed(1)} `}
+for(let x=92;x<=208;x+=12){const y=13*Math.sin((x-88)/9);r+=`<line x1="${x}" y1="${130+y}" x2="${x}" y2="${130-y}" stroke="var(--mute)" stroke-width="2"/>`}
+o+=r+`<polyline points="${a}" fill="none" stroke="var(--S)" stroke-width="4"/><polyline points="${b}" fill="none" stroke="var(--P)" stroke-width="4"/><text x="150" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">DNA</text>`;
+PO.forEach((p,i)=>{o+=`<circle cx="${p[0]}" cy="${p[1]}" r="12" fill="var(--card)" stroke="${st=='pore'?'#e0a100':'var(--mute)'}" stroke-width="3"/>`});
+if(st!='which')o+=`<text x="296" y="106" font-size="12" fill="var(--ink)">Nuclear pore</text>`;
+o+=`<ellipse cx="450" cy="105" rx="18" ry="13" fill="#6a4c93"/><ellipse cx="462" cy="92" rx="11" ry="8" fill="#8e6bbf"/><ellipse cx="430" cy="235" rx="48" ry="24" fill="rgba(232,147,90,.5)" stroke="#c2692f" stroke-width="2.5"/><path d="M396 235 q9 -14 18 0 t18 0 t18 0 t18 0" fill="none" stroke="#c2692f" stroke-width="2"/><circle cx="360" cy="55" r="20" fill="rgba(120,190,230,.4)" stroke="#4a90c2" stroke-width="2.5"/>`;
+if(TL.rev.rib)o+=`<text x="450" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">Ribosome</text>`;
+if(TL.rev.mit)o+=`<text x="430" y="274" text-anchor="middle" font-size="12" fill="var(--ink)">Mitochondrion</text>`;
+if(TL.rev.ves)o+=`<text x="360" y="90" text-anchor="middle" font-size="12" fill="var(--ink)">Vesicle</text>`;
+o+=`<g transform="translate(${TL.mx-25},${TL.my})"><polyline points="0,0 10,-8 20,0 30,-8 40,0 50,-8" fill="none" stroke="var(--U)" stroke-width="5" stroke-linejoin="round"/><text x="25" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="var(--U)">mRNA</text></g>`;
+if(st=='pore')PO.forEach((p,i)=>{o+=`<circle class="hs" data-p="${i}" cx="${p[0]}" cy="${p[1]}" r="18" data-s=""/>`});
+if(st=='find')[['rib',450,105,28],['mit',430,235,50],['ves',360,55,24]].forEach(h=>{o+=`<circle class="hs" data-o="${h[0]}" cx="${h[1]}" cy="${h[2]}" r="${h[3]}" data-s=""/>`});
+return o}
+function tlB(){const {cod,chain,st,dock}=TL,vp=TL.scrub??TL.pos,x0=j=>44+j*84,ym=123,by=232,cnt=TL.scrub!=null?Math.min(chain.length,Math.floor(vp+1e-6)):chain.length;let o='';
+if(st=='done'){const P=chain.map((a,i)=>{const g=i*1.25,rd=26+i*14;return[280+rd*Math.cos(g),140+rd*Math.sin(g)]});
+o+=`<polyline points="${P.map(p=>p.map(v=>v.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/>`;
+chain.forEach((a,i)=>{o+=`<circle cx="${P[i][0]}" cy="${P[i][1]}" r="22" fill="${aac(a)}"/><text x="${P[i][0]}" y="${P[i][1]+4}" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">${a}</text>`});
+return o+`<text x="280" y="290" text-anchor="middle" font-size="18" font-weight="700" fill="var(--ink)">Protein</text><text x="280" y="312" text-anchor="middle" font-size="13" fill="var(--mute)">${chain.join(' – ')}</text>`}
+if(st=='build'||st=='stop'){const x=x0(vp)-8,w=Math.min(172,556-x);o+=`<rect x="${x}" y="68" width="${w}" height="200" rx="34" fill="rgba(124,92,214,.14)" stroke="var(--P)" stroke-width="2.5"/><text x="${x+w-12}" y="258" text-anchor="end" font-size="12" font-weight="700" fill="var(--P)">Ribosome</text>`}
+o+=`<line x1="34" y1="${ym}" x2="530" y2="${ym}" stroke="var(--U)" stroke-width="4"/><text x="18" y="${ym+5}" text-anchor="middle" font-size="13" font-weight="700" fill="var(--mute)">5′</text><text x="546" y="${ym+5}" text-anchor="middle" font-size="13" font-weight="700" fill="var(--mute)">3′</text>`;
+cod.forEach((c,j)=>{o+=`<rect x="${x0(j)-4}" y="${ym-19}" width="70" height="38" rx="9" fill="var(--line)" opacity=".55"/>`;[...c].forEach((b,q)=>{const x=x0(j)+q*22;o+=`<rect x="${x}" y="${ym-13}" width="20" height="26" rx="4" fill="${tlb(b)}"/><text x="${x+10}" y="${ym+6}" text-anchor="middle" font-weight="700" font-size="15" fill="#fff">${b}</text>`});
+if(j<cnt)o+=`<text x="${x0(j)+32}" y="${ym-25}" text-anchor="middle" font-size="12" font-weight="700" fill="${aac(CT[c])}">${CT[c]}</text>`;
+else if(STOPS.includes(c)&&st=='stop')o+=`<text x="${x0(j)+32}" y="${ym-25}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--bad)">STOP</text>`});
+if(dock!=null&&TL.scrub==null){const c=cod[dock],a=acd(c),cx=x0(dock)+32,dy=(1-TL.tin)*70+TL.tout*70,op=Math.max(0,Math.min(1,TL.tin*(1-TL.tout)));
+o+=`<g opacity="${op.toFixed(2)}" transform="translate(0,${dy.toFixed(1)})">`;
+[...a].forEach((b,q)=>{const x=x0(dock)+q*22;o+=`<line x1="${x+10}" y1="${ym-dy+15}" x2="${x+10}" y2="152" stroke="var(--ink)" stroke-width="2" stroke-dasharray="3 3" opacity="${TL.tin>.95?1:0}"/><rect x="${x}" y="154" width="20" height="26" rx="4" fill="${tlb(b)}"/><text x="${x+10}" y="173" text-anchor="middle" font-weight="700" font-size="15" fill="#fff">${b}</text>`});
+o+=`<rect x="${cx-34}" y="182" width="68" height="30" rx="15" fill="rgba(42,157,143,.22)" stroke="#2a9d8f" stroke-width="2.5"/><text x="${cx}" y="202" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">tRNA</text>`+(chain.length<=dock?`<circle cx="${cx}" cy="${by}" r="20" fill="${aac(CT[c])}"/><text x="${cx}" y="${by+4}" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">${CT[c]}</text>`:'')+`<text x="${x0(dock)+70}" y="172" font-size="11" font-weight="700" fill="var(--ink)">anticodon</text><text x="${x0(dock)+70}" y="149" font-size="11" font-weight="700" fill="var(--ink)" opacity="${TL.tin>.95?1:0}">hydrogen bonds</text></g>`}
+for(let j=0;j<cnt;j++){const cx=x0(j)+32;if(j>0){const fr=(dock===j&&j===chain.length-1&&TL.scrub==null)?TL.bp:1,px=x0(j-1)+32+20;o+=`<line x1="${px}" y1="${by}" x2="${px+44*fr}" y2="${by}" stroke="var(--ink)" stroke-width="6" stroke-linecap="round"/>`;
+if(fr<1||(dock===j&&TL.scrub==null&&TL.tout<1))o+=`<text x="${px+22}" y="${by+38}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)">peptide bond</text>`}
+o+=`<circle cx="${cx}" cy="${by}" r="20" fill="${aac(chain[j])}"/><text x="${cx}" y="${by+4}" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">${chain[j]}</text>`}
+if(cnt>1)o+=`<text x="280" y="296" text-anchor="middle" font-size="12" fill="var(--mute)">Amino acids are joined by peptide bonds to make a polypeptide chain</text>`;
+return o}
+const an=(p,a,b,ms,done)=>{if(ms<=1||a==b){TL[p]=b;done&&done();return}let k=0;const N=Math.ceil(ms/16),iv=setInterval(()=>{k++;const e=k/N,m=e*e*(3-2*e);TL[p]=a+(b-a)*m;tlR();if(k>=N){clearInterval(iv);TL[p]=b;done&&done()}},16)};
+function tlDo(o,cb){const k=TL.k,c=TL.cod[k];TL.busy=true;TL.scrub=null;TL.dock=k;TL.tin=0;TL.bp=0;TL.tout=0;TL.opts=[];TL.msg=`The anticodon ${o.ac} on the tRNA is complementary to codon ${c} on the mRNA, so the two bind by base pairing (hydrogen bonds). This tRNA carries ${AAN[o.aa]}.`;tlR();
+an('tin',0,1,600,()=>{TL.chain.push(o.aa);TL.msg=k?'A peptide bond (a covalent bond) joins the new amino acid to the end of the chain.':'The first amino acid, methionine, is in place.';
+an('bp',0,1,k?700:1,()=>{TL.msg='The tRNA lets go of its amino acid and leaves.';an('tout',0,1,500,()=>{TL.dock=null;TL.k++;TL.msg='The ribosome moves along the mRNA by one codon.';
+an('pos',k,k+1,900,()=>{TL.busy=false;TL.tin=1;TL.bp=1;TL.tout=0;if(STOPS.includes(TL.cod[TL.k])){TL.st='stop';TL.msg=`The ribosome reaches ${TL.cod[TL.k]}, a stop codon. No tRNA matches a stop codon, so translation ends.`}else{TL.msg=`Now choose the tRNA for codon ${TL.cod[TL.k]}.`;tlOpts()}tlR();cb&&cb()})})})})}
+function tlAuto(){if(TL.st!='build'||TL.busy)return;const c=TL.cod[TL.k];tlDo({ac:acd(c),aa:CT[c]},tlAuto)}
+function tlR(){const st=TL.st,s=(st=='which'||st=='pore')?0:st=='find'?1:st=='build'?2:st=='stop'?3:4;
+$('#tlsvg').innerHTML=(s<2?tlA():tlB());
+$('#tlstep').innerHTML=['The mRNA leaves the nucleus','It finds a ribosome','tRNA brings amino acids, which join in a chain','A stop codon is reached','The chain folds into a protein'].map((t,i)=>`<li class="${i<s?'done':i==s?'now':''}">${t}</li>`).join('');
+let h='';if(st=='which')h=`<button class="btn alt" data-a="dna">DNA</button><button class="btn alt" data-a="mrna">mRNA</button>`;
+else if(st=='build'&&!TL.busy)h=`<div style="width:100%;display:flex;align-items:center;gap:8px;font-size:14px">Codon on the mRNA: <span style="display:flex;gap:2px">${[...TL.cod[TL.k]].map(b=>tile(b)).join('')}</span> Which tRNA has the complementary anticodon?</div>`+TL.opts.map((o,i)=>`<button class="trna" data-i="${i}"><span>anticodon</span><div>${[...o.ac].map(b=>`<span class="t" style="background:${tlb(b)}">${b}</span>`).join('')}</div><span>carries ${AAN[o.aa]}</span></button>`).join('');
+else if(st=='stop')h=`<button class="btn" data-a="rel">Release the polypeptide</button>`;
+$('#tlbtns').innerHTML=h;
+$('#tlbtns').querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>tlAns(b.dataset.a));
+$('#tlbtns').querySelectorAll('.trna').forEach(b=>b.onclick=()=>tlTrna(+b.dataset.i));
+$('#tlsvg').querySelectorAll('[data-p]').forEach(e=>e.onclick=()=>tlPore(+e.dataset.p));
+$('#tlsvg').querySelectorAll('[data-o]').forEach(e=>e.onclick=()=>tlOrg(e.dataset.o));
+const bar=$('#tlbar'),showB=st=='build'||st=='stop';$('#tlbarw').style.display=showB?'':'none';bar.max=(TL.cod.length-1)*100;bar.value=(TL.scrub??TL.pos)*100;bar.disabled=!!TL.busy;$('#tlauto').style.display=st=='build'&&!TL.busy?'':'none';
+$('#tlmsg').textContent=TL.msg;$('#tlinfo').style.display=(st=='build'||st=='stop')?'':'none'}
+function tlAns(a){if(TL.st=='which'){if(a=='mrna'){TL.st='pore';TL.msg='Correct. The mRNA is a small copy of one gene, so it can pass through a nuclear pore. Click a nuclear pore to send it out.'}else TL.msg='Not quite. DNA is very long and must stay safe in the nucleus. Only a copy of the gene, the mRNA, leaves.'}
+else if(TL.st=='stop'){TL.st='done';TL.msg='The chain folds into a 3D shape. This is a protein. The order of the amino acids was decided by the order of bases in the gene.'}tlR()}
+function tlPore(i){if(TL.st!='pore'||TL.busy)return;TL.busy=true;const P=[[276,125],[271,216]][i];tween([TL.mx,TL.my],P,500,()=>tween(P,[370,165],600,()=>{TL.st='find';TL.busy=false;TL.msg='The mRNA is now in the cytoplasm. Proteins are made at ribosomes. Click the ribosome.';tlR()}))}
+function tlOrg(o){if(TL.st!='find'||TL.busy)return;TL.rev[o]=1;
+if(o!='rib'){TL.msg=o=='mit'?'That is a mitochondrion. It releases energy by respiration. Proteins are made at ribosomes. Try again.':'That is a vesicle. It stores and moves substances. Proteins are made at ribosomes. Try again.';tlR();return}
+TL.busy=true;tween([TL.mx,TL.my],[440,125],600,()=>{TL.st='build';TL.busy=false;tlOpts();TL.msg=`The ribosome reads the mRNA three bases at a time (a codon). Choose the tRNA whose anticodon pairs with codon ${TL.cod[0]}.`;tlR()})}
+function tlTrna(i){if(TL.st!='build'||TL.busy)return;const o=TL.opts[i],c=TL.cod[TL.k];
+if(o.ac==acd(c))tlDo(o);
+else{const q=[...c].findIndex((x,n)=>CM[x]!=o.ac[n]);TL.msg=`Not quite. The anticodon must be complementary to the codon ${c}, base by base. Codon base ${c[q]} pairs with ${CM[c[q]]}, but this anticodon has ${o.ac[q]} there.`;tlR();const bs=$('#tlbtns').querySelectorAll('.trna');bs[i]&&bs[i].classList.add('shake')}}
+$('#tlbar').oninput=e=>{if(TL.busy||!['build','stop'].includes(TL.st))return;const el=$('#tlbar');let v=+el.value/100;if(v>=TL.k-.001){v=TL.k;TL.scrub=null}else TL.scrub=v;el.value=v*100;tlR()};
+$('#tlauto').onclick=tlAuto;
+$('#tlnew').onclick=tlNew;
+tlNew();
+// ---------- decode
+const tile=(b,x='')=>`<span class="bx" style="background:var(--${b});width:34px;height:34px;${x}">${b}</span>`,TM={A:'T',U:'A',G:'C',C:'G'};
+const DCM=[{t:'DNA template → mRNA',gl:'DNA template strand (3′ to 5′)',al:'Your mRNA (5′ to 3′)',f:b=>RB[b],pal:'AUGC',src:'ATGC'},{t:'mRNA → DNA template',gl:'mRNA (5′ to 3′)',al:'Your DNA template strand (3′ to 5′)',f:b=>TM[b],pal:'ATGC',src:'AUGC'}];
+let DC={m:0};
+function dcNew(m=DC.m){DC={m,g:Array.from({length:9},()=>rnd([...DCM[m].src])),a:[],done:false};$('#dcmsg').textContent='';dcR()}
+function dcR(){const M=DCM[DC.m],ans=DC.g.map(M.f),n=DC.g.length;
+$('#dcchips').innerHTML=DCM.map((x,i)=>`<button class="chip" data-m="${i}" aria-pressed="${DC.m==i}">${x.t}</button>`).join('');
+$('#dcchips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>dcNew(+b.dataset.m));
+$('#dcg').innerHTML=`<p class="sub" style="margin:0 0 4px">${M.gl}</p><div class="row" style="gap:4px;margin:0">${DC.g.map(b=>tile(b)).join('')}</div>`;
+$('#dca').innerHTML=`<p class="sub" style="margin:0 0 4px">${M.al}</p><div class="row" style="gap:4px;margin:0">${DC.g.map((_,i)=>DC.a[i]?tile(DC.a[i],DC.done?`box-shadow:0 0 0 3px var(--${DC.a[i]==ans[i]?'ok':'bad'})`:''):`<span class="bx slot" style="width:34px;height:34px">?</span>`).join('')}</div>`;
+$('#dcpal').innerHTML=[...M.pal].map(b=>`<button class="bx" style="background:var(--${b});width:48px" data-b="${b}" ${DC.done||DC.a.length>=n?'disabled':''}>${b}</button>`).join('');
+$('#dcpal').querySelectorAll('.bx').forEach(b=>b.onclick=()=>{DC.a.push(b.dataset.b);dcR()})}
+$('#dcundo').onclick=()=>{if(DC.done)return;DC.a.pop();dcR()};
+$('#dcnew').onclick=()=>dcNew();
+$('#dccheck').onclick=()=>{if(DC.done)return;const ans=DC.g.map(DCM[DC.m].f);if(DC.a.length<ans.length){$('#dcmsg').textContent='Fill in every base first.';return}
+DC.done=true;const ok=ans.filter((b,i)=>b==DC.a[i]).length;
+$('#dcmsg').textContent=ok==ans.length?(DC.m==0?'Perfect! Remember: in RNA, A pairs with U.':'Perfect! Remember: DNA has T, never U.'):`${ok} of ${ans.length} correct. The answer is ${ans.join('')}. ${DC.m==0?'T pairs with A, A pairs with U, C pairs with G, G pairs with C.':'A pairs with T, U pairs with A, C pairs with G, G pairs with C.'}`;dcR()};
+dcNew(0);
+// codon to protein
+let PR={mode:"dna"};
+function ctabR(){const hc=[...'UCAG'],col=c=>c.split('').map((x,i)=>`<i class="k${i}">${x}</i>`).join('');let h='<table class="cdt"><tr><th></th>'+hc.map(b=>`<th class="t1">${b}</th>`).join('')+'<th></th></tr>';
+hc.forEach(a=>{h+=`<tr><th class="t2">${a}</th>`;hc.forEach(b=>{const gs=[];hc.forEach(c=>{const cod=a+b+c,aa=CT[cod]||'STOP',g=gs[gs.length-1];if(g&&g.aa==aa)g.c.push(cod);else gs.push({aa,c:[cod]})});
+h+='<td>'+gs.map(g=>{const nm0=g.aa=='STOP'?'STOP':g.aa=='Met'?'Methionine<br>START':AAN[g.aa][0].toUpperCase()+AAN[g.aa].slice(1);const ab=g.aa=='STOP'?'':`<br><span class="abv">${g.aa}</span>`;return `<div class="cgp" style="height:${g.c.length*20}px"><div class="cds">${g.c.map(c=>`<div>${col(c)}</div>`).join('')}</div><div class="aan${g.aa=='STOP'||g.aa=='Met'?' stp':''}">${nm0}${ab}</div></div>`}).join('')+'</td>'});
+h+=`<td class="t3">${hc.map(c=>`<div>${c}</div>`).join('')}</td></tr>`});$('#ctab').innerHTML=h+'</table>'}
+ctabR();
+function prNew(m){const sense=Object.keys(CT).filter(c=>c!='AUG'),cod=['AUG',...shuf(sense).slice(0,3+(Math.random()<.5?1:0)),rnd(STOPS)],M=cod.join(''),ans={};
+[...M].forEach((b,i)=>{ans['d'+i]=TM[b];ans['m'+i]=b;const j=i/3|0;if(!STOPS.includes(cod[j]))ans['a'+i]=CM[b]});
+cod.forEach((c,j)=>ans['p'+j]=STOPS.includes(c)?'STOP':CT[c]);
+PR={mode:m||PR.mode||'dna',cod,M,ans,v:{}};$('#prmsg').textContent='';$('#prex').innerHTML='';prR()}
+function prR(chk){const {cod,M,ans,v,mode}=PR,aas=[...new Set(Object.values(CT))].sort(),cl=k=>chk&&v[k]?(v[k]==ans[k]?' ok':' bad'):'';
+const cell=(k,given,extra='')=>given?`<td class="${extra}">${tile(ans[k],'width:28px;height:28px;font-size:14px')}</td>`:`<td class="${extra}"><input class="bi${cl(k)}" data-k="${k}" maxlength="1" value="${v[k]||''}" autocomplete="off" aria-label="Base ${+k.slice(1)+1}"></td>`;
+const row=(lab,fn)=>`<tr><th>${lab}</th>${[...M].map((_,i)=>fn(i,i%3==0?'cf':'')).join('')}</tr>`;
+let h='<table class="pct">'+row('DNA 3′→5′',(i,x)=>cell('d'+i,mode=='dna',x))+row('mRNA 5′→3′',(i,x)=>cell('m'+i,mode=='mrna',x))
++row('tRNA',(i,x)=>STOPS.includes(cod[i/3|0])?(i%3==0?`<td class="cf" colspan="3" style="font-size:12px;color:var(--mute)">no tRNA</td>`:''):cell('a'+i,false,x));
+h+=`<tr><th>Amino acid</th>${cod.map((c,j)=>`<td class="cf" colspan="3"><select data-k="p${j}" class="${cl('p'+j).trim()}" aria-label="Amino acid for codon ${j+1}"><option value="">Choose…</option>${aas.map(a=>`<option value="${a}" ${v['p'+j]==a?'selected':''}>${a}</option>`).join('')}<option value="STOP" ${v['p'+j]=='STOP'?'selected':''}>STOP</option></select></td>`).join('')}</tr></table>`;
+$('#prm').innerHTML=h;
+$('#prchips').innerHTML=[['dna','Start from the DNA template'],['mrna','Start from the mRNA']].map(([k,t])=>`<button class="chip" data-m="${k}" aria-pressed="${mode==k}">${t}</button>`).join('');
+$('#prchips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>prNew(b.dataset.m));
+const ins=[...$('#prm').querySelectorAll('.bi')];
+ins.forEach((e,n)=>e.oninput=()=>{e.value=e.value.toUpperCase().replace(/[^ATGCU]/g,'').slice(0,1);v[e.dataset.k]=e.value;if(e.value&&ins[n+1])ins[n+1].focus()});
+$('#prm').querySelectorAll('select').forEach(s=>s.onchange=()=>{v[s.dataset.k]=s.value})}
+$('#prnew').onclick=()=>prNew();
+$('#prcheck').onclick=()=>{const ks=Object.keys(PR.ans).filter(k=>k[0]=='p'||(PR.mode=='dna'?k[0]!='d':k[0]!='m'));
+const f=ks.filter(k=>PR.v[k]),ok=f.filter(k=>PR.v[k]==PR.ans[k]),bad=f.filter(k=>PR.v[k]!=PR.ans[k]),e=ks.length-f.length;
+prR(true);
+$('#prmsg').textContent=e?`${ok.length} correct, ${bad.length} wrong, ${e} still blank.`:bad.length?`${ok.length} of ${ks.length} correct. Fix the red ones and check again.`:'All correct! You followed the code from gene to protein.';
+const t=new Set(bad.map(k=>k[0])),L=[];if(t.has('d'))L.push('DNA template: A pairs with T, and U pairs with A, G pairs with C, C pairs with G.');if(t.has('m'))L.push('mRNA: T pairs with A, A pairs with U, C pairs with G, G pairs with C. RNA has U, not T.');if(t.has('a'))L.push('tRNA anticodon: it pairs with the mRNA codon (A with U, G with C).');if(t.has('p'))L.push('Amino acid: read the mRNA codon in the codon table below.');
+$('#prex').innerHTML=(L.length?'<ul>'+L.map(x=>`<li>${x}</li>`).join('')+'</ul>':'')+(!e&&!bad.length?`<p><b>Protein:</b> ${PR.cod.filter(c=>!STOPS.includes(c)).map(c=>CT[c]).join(' – ')}</p>`:'')};
+prNew();
 </script></body></html>
