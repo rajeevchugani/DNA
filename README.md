@@ -54,3 +54,6 @@ An interactive website for teaching DNA structure, DNA vs RNA, transcription and
 - **Test mode**: topic filter (All, History, Structure, RNA & protein, Replication), per-topic missed list and **Review missed**, plus more questions.
 - **Spot the mistake** works with the keyboard: Tab to a part, press Enter or Space to mark it.
 - Wide diagrams scroll sideways on phones (swipe hint shown).
+
+## Theme switch
+A pill button in the top-right of the header switches between Dark (default) and Light themes, matching the Science Revision Hub. The choice is remembered in the browser (key `dna-explorer-theme`); if storage is blocked it still works and defaults to dark. On phones the button sits under the hub link, above the title. All colours are CSS variables defined at the top of the file.

@@ -10,14 +10,15 @@
   gtag('config', 'G-MMCRQ7R1VM');
 </script>
 <meta charset="utf-8">
-<script>try{var th=localStorage.getItem("dnaTheme");if(th==="light"||th==="dark")document.documentElement.setAttribute("data-theme",th)}catch(e){}</script>
+<script>try{var th=localStorage.getItem("dna-explorer-theme");if(th==="light"||th==="dark")document.documentElement.setAttribute("data-theme",th)}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>DNA Explorer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@500&display=swap">
 <style>
 :root{--P:#e8833a;--S:#3b82c4;--A:#d9483f;--T:#d49a1c;--G:#2a9468;--C:#7656c2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-:root,:root[data-theme=dark]{color-scheme:dark;--acc:#B8F34A;--acd:#0E1020;--bg:#0E1020;--card:#181B33;--panel:#20244A;--ink:#E4E7F7;--head:#fff;--mute:#A3A8C9;--line:#343A70;--bb:#7a82b8;--ok:#B8F34A;--bad:#FF9D5C;--stop:#FF6B6B;--pk:#FF7AA8;--cy:#4CC9F0}
-:root[data-theme=light]{color-scheme:light;--acc:#3D7A05;--acd:#fff;--bg:#F3F4FF;--card:#fff;--panel:#EAECFB;--ink:#1C2040;--head:#1C2040;--mute:#4F5580;--line:#C4C8E8;--bb:#6B72A8;--ok:#2F6B04;--bad:#C2410C;--stop:#B42318;--pk:#C4165E;--cy:#0A77A0}
+:root,:root[data-theme=dark]{color-scheme:dark;--paper:#0E1020;--panel:#181B33;--raise:#20244A;--raise2:#292E5E;--ink:#E4E7F7;--head:#FFFFFF;--ink2:#A3A8C9;--line:#343A70;--grid:#1D2142;--ok:#B8F34A;--okfg:#0E1020;--okbg:rgba(184,243,74,.09);--bad:#FF9D5C;--badbg:rgba(255,157,92,.12);--warn:#FFD166;--warnbg:#33290F;--accent:#B8F34A;--accentfg:#0E1020;--bb:#7a82b8;--stop:#FF6B6B;--pk:#FF7AA8;--cy:#4CC9F0}
+:root[data-theme=light]{color-scheme:light;--paper:#F3F4FF;--panel:#FFFFFF;--raise:#EAECFB;--raise2:#DDE0F7;--ink:#1C2040;--head:#1C2040;--ink2:#4E547E;--line:#C3C8EA;--grid:#E3E6F8;--ok:#3D7A05;--okfg:#FFFFFF;--okbg:rgba(61,122,5,.08);--bad:#C2410C;--badbg:rgba(194,65,12,.08);--warn:#7A5200;--warnbg:#FFF0D1;--accent:#3D7A05;--accentfg:#FFFFFF;--bb:#6B72A8;--stop:#B42318;--pk:#C4165E;--cy:#0A77A0}
+:root,:root[data-theme=dark],:root[data-theme=light]{--acc:var(--accent);--acd:var(--accentfg);--bg:var(--paper);--card:var(--panel);--mute:var(--ink2)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Avenir Next","Segoe UI",Roboto,sans-serif}
@@ -59,7 +60,7 @@ input[type=range]{flex:1;min-width:160px}
 .end{font-weight:700;width:30px;text-align:center}
 .opts{display:grid;gap:8px;margin:10px 0}
 .opts button{text-align:left;padding:10px 12px;border:1px solid var(--line);background:var(--bg);border-radius:8px}
-.opts button.ok{background:var(--ok);color:#fff}.opts button.bad{background:var(--bad);color:#fff}
+.opts button.ok{background:var(--ok);color:var(--okfg)}.opts button.bad{background:var(--bad);color:var(--accentfg)}
 .msg{min-height:26px;margin:8px 0;font-weight:600}
 .pc{padding:9px 14px;border-radius:8px;color:#fff;font-weight:700;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none}
 .pc.armed{transform:scale(1.1);filter:brightness(1.25)}
@@ -125,14 +126,14 @@ header{padding:32px 16px 8px;max-width:960px}main{max-width:960px}
 .hd{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
 .eyebrow{display:flex;align-items:center;gap:10px;font:500 13px/1 'DM Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
 .eyebrow i{width:10px;height:10px;border-radius:50%;background:var(--acc)}
-#theme{display:inline-flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:500;color:var(--ink);transition:background .15s,transform .15s}
+#theme{display:inline-flex;align-items:center;gap:8px;background:var(--raise);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:500;color:var(--ink);transition:background .15s,transform .15s}
 #theme:hover{transform:translateY(-1px);border-color:var(--acc)}
 #theme svg{width:18px;height:18px;flex:none}
 h1{font-weight:800;font-size:clamp(42px,9vw,68px);line-height:1;margin:0}
 h1 span{color:var(--acc)}
 header p{font-size:18px;margin:10px 0 18px;color:var(--mute)}
 nav{gap:8px}
-nav button{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-size:15px;font-weight:500;color:var(--ink);transition:background .15s,transform .15s,border-color .15s}
+nav button{background:var(--raise);border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-size:15px;font-weight:500;color:var(--ink);transition:background .15s,transform .15s,border-color .15s}
 nav button:hover{transform:translateY(-1px);border-color:var(--acc)}
 nav button[aria-selected=true]{background:var(--acc);color:var(--acd);border-color:var(--acc);font-weight:700}
 nav button:focus-visible,.btn:focus-visible,.chip:focus-visible,#theme:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
@@ -146,15 +147,15 @@ h3{font-weight:700}
 .btn.alt:hover{border-color:var(--acc)}
 .chip{border-radius:999px;font-size:15px;border-color:var(--line);color:var(--ink)}
 .chip[aria-pressed=true]{background:var(--acc);color:var(--acd);border-color:var(--acc);font-weight:700}
-.info{background:var(--panel);border-left:4px solid var(--acc);border-radius:14px;color:var(--ink)}
-.opts button{background:var(--panel);border:2px solid var(--line);border-radius:14px;color:var(--ink);font-size:16px}
+.info{background:var(--raise);border-left:4px solid var(--acc);border-radius:14px;color:var(--ink)}
+.opts button{background:var(--raise);border:2px solid var(--line);border-radius:14px;color:var(--ink);font-size:16px}
 .opts button:hover{border-color:var(--acc)}
-.opts button.ok{background:var(--panel);color:var(--ink);border-color:var(--ok)}.opts button.bad{background:var(--panel);color:var(--ink);border-color:var(--bad)}
+.opts button.ok{background:var(--raise);color:var(--ink);border-color:var(--ok)}.opts button.bad{background:var(--raise);color:var(--ink);border-color:var(--bad)}
 .opts button.ok::before{content:'✓ ';color:var(--ok);font-weight:700}.opts button.bad::before{content:'✗ ';color:var(--bad);font-weight:700}
 .msg.good{color:var(--ok)}.msg.bad{color:var(--bad)}
-#fb{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:10px 12px}
-.cbox{border-radius:18px;background:var(--panel);border:1px solid var(--line)}
-.cdn,.trna{border-color:var(--line);background:var(--panel);border-radius:14px}
+#fb{background:var(--raise);border:2px solid var(--line);border-radius:14px;padding:10px 12px}
+.cbox{border-radius:18px;background:var(--raise);border:1px solid var(--line)}
+.cdn,.trna{border-color:var(--line);background:var(--raise);border-radius:14px}
 .trna{font-size:14px;color:var(--ink)}.trna:hover{border-color:var(--acc)}
 .cdn select,.pct select{font-size:14px;background:var(--bg);border:2px solid var(--line)}
 .pct th{font-size:14px}.abv{font-size:13px}
@@ -168,8 +169,8 @@ h3{font-weight:700}
 .mk{font:700 17px 'DM Sans',sans-serif;paint-order:stroke;stroke:var(--card);stroke-width:4px;pointer-events:none}
 .mk.ok{fill:var(--ok)}.mk.no,.mk.miss{fill:var(--bad)}
 .aan.stp{color:var(--stop)}
-.cdt th{border:1px solid var(--line);background:var(--panel);color:var(--head)}
-.cdt th.t1{background:var(--panel);color:var(--cy)}.cdt th.t2{background:var(--panel);color:var(--acc)}.cdt td.t3{background:var(--panel);color:var(--pk);border:1px solid var(--line)}
+.cdt th{border:1px solid var(--line);background:var(--raise);color:var(--head)}
+.cdt th.t1{background:var(--raise);color:var(--cy)}.cdt th.t2{background:var(--raise);color:var(--acc)}.cdt td.t3{background:var(--raise);color:var(--pk);border:1px solid var(--line)}
 .cdt td{background:var(--bg);border-color:var(--line);font-size:14px}
 .cdt .k0{color:var(--acc)}.cdt .k1{color:var(--cy)}.cdt .k2{color:var(--pk)}
 .steps li.now{color:var(--head)}
@@ -183,15 +184,19 @@ nav{display:flex;flex-wrap:wrap;gap:14px 26px}
 .g1 .gl{color:var(--acc)}.g2 .gl{color:var(--cy)}.g3 .gl{color:var(--pk)}.g4 .gl{color:var(--head)}
 nav button,.btn,#theme,.hub{min-height:44px}.chip{min-height:40px}
 nav button.vis::after{content:' ✓';font-weight:700;color:var(--acc)}nav button[aria-selected=true].vis::after{color:var(--acd)}
-.hub{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;background:var(--panel);transition:transform .15s,border-color .15s}
+.hub{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;background:var(--raise);transition:transform .15s,border-color .15s}
 .hub:hover{transform:translateY(-1px);border-color:var(--acc)}.hub:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 .nextrow{display:flex;justify-content:flex-end;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
 @media (max-width:600px){.gl{font-size:11px}}
 @media (prefers-reduced-motion:reduce){nav button,#theme,.btn{transition:none}nav button:hover,#theme:hover,.btn:hover{transform:none}}
 @media (prefers-reduced-motion:reduce){.g,.part,.shake{transition:none;animation:none}}
 .btn.alt.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}.hs:focus{outline:none;stroke:var(--cy);stroke-width:3.5;fill:rgba(76,201,240,.25)}.pu{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+#theme.hbtn{border:1.5px solid var(--line);background:var(--raise);color:var(--ink);border-radius:999px;padding:7px 16px;font:700 14px var(--f-body,'DM Sans',system-ui,sans-serif);cursor:pointer;transition:transform .15s,background .15s;min-height:44px}
+#theme.hbtn:hover{background:var(--raise2);transform:translateY(-1px);border-color:var(--line)}
+@media (prefers-reduced-motion:reduce){#theme.hbtn{transition:none}#theme.hbtn:hover{transform:none}}
+@media (max-width:720px){.hd{flex-direction:column;align-items:flex-start}}
 </style></head><body>
-<header><div class="hd"><a class="hub" href="https://sites.google.com/cis.edu.hk/y11science" target="_blank" rel="noopener">← Science Revision Hub</a><button id="theme" type="button" aria-label="Switch between dark and light theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="themeic"></svg><span id="themetx">Light mode</span></button></div><div class="eyebrow" style="margin-bottom:12px"><i></i>Biology · Code of Life</div><h1>DNA <span>Explorer</span></h1><p>Unwind the helix, learn the parts, then build and test it yourself.</p>
+<header><div class="hd"><a class="hub" href="https://sites.google.com/cis.edu.hk/y11science" target="_blank" rel="noopener">← Science Revision Hub</a><button id="theme" class="hbtn" type="button" aria-label="Switch to light theme"><span id="themetx">☀ Light mode</span></button></div><div class="eyebrow" style="margin-bottom:12px"><i></i>Biology · Code of Life</div><h1>DNA <span>Explorer</span></h1><p>Unwind the helix, learn the parts, then build and test it yourself.</p>
 <nav aria-label="Sections"><div class="ng g1"><span class="gl">1 · Learn</span><div class="gb" role="tablist"><button role="tab" aria-selected="true" data-t="0">Helix</button><button role="tab" aria-selected="false" data-t="6">History</button><button role="tab" aria-selected="false" data-t="1">Nucleotide &amp; bonds</button><button role="tab" aria-selected="false" data-t="13">Purines &amp; pyrimidines</button></div></div><div class="ng g2"><span class="gl">2 · Practise</span><div class="gb" role="tablist"><button role="tab" aria-selected="false" data-t="2">Build puzzle</button><button role="tab" aria-selected="false" data-t="4">Assemble</button><button role="tab" aria-selected="false" data-t="5">Sandbox</button><button role="tab" aria-selected="false" data-t="7">Spot the mistake</button></div></div><div class="ng g3"><span class="gl">3 · DNA to protein</span><div class="gb" role="tablist"><button role="tab" aria-selected="false" data-t="8">DNA vs RNA</button><button role="tab" aria-selected="false" data-t="12">Replication</button><button role="tab" aria-selected="false" data-t="9">Transcription</button><button role="tab" aria-selected="false" data-t="10">Translation</button><button role="tab" aria-selected="false" data-t="11">Decode it</button></div></div><div class="ng g4"><span class="gl">4 · Test yourself</span><div class="gb" role="tablist"><button role="tab" aria-selected="false" data-t="3">Test mode</button></div></div></nav></header>
 <main>
 <section id="s0" class="on"><h2>Unwind the double helix</h2><p class="sub">Click the helix or drag the slider to unwind it into a flat ladder. The strands run in opposite directions (antiparallel).</p>
@@ -260,8 +265,8 @@ const SUN='<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1
 
 // ---------- wide diagrams scroll on phones
 ['#trsvg','#tlsvg','#az','#sbx'].forEach(q=>{const e=$(q);if(!e||!e.parentNode||!e.parentNode.insertBefore)return;const w=document.createElement('div');w.className='sw';const h=document.createElement('p');h.className='swh';h.textContent='Swipe sideways to see the whole diagram.';e.parentNode.insertBefore(h,e);e.parentNode.insertBefore(w,e);w.appendChild(e)});
-function setTheme(t,save){document.documentElement.setAttribute('data-theme',t);$('#themeic').innerHTML=t=='dark'?SUN:MOON;$('#themetx').textContent=t=='dark'?'Light mode':'Dark mode';if(save){try{localStorage.setItem('dnaTheme',t)}catch(e){}}}
-{let t='dark';try{const v=localStorage.getItem('dnaTheme');if(v=='light'||v=='dark')t=v}catch(e){}setTheme(t,false)}
+function setTheme(t,save){document.documentElement.setAttribute('data-theme',t);$('#themetx').textContent=t=='dark'?'☀ Light mode':'☾ Dark mode';$('#theme').setAttribute('aria-label',t=='dark'?'Switch to light theme':'Switch to dark theme');if(save){try{localStorage.setItem('dna-explorer-theme',t)}catch(e){}}}
+{let t='dark';try{const v=localStorage.getItem('dna-explorer-theme');if(v=='light'||v=='dark')t=v}catch(e){}setTheme(t,false)}
 $('#theme').onclick=()=>setTheme(document.documentElement.getAttribute('data-theme')=='light'?'dark':'light',true);
 function msgKind(t){let m;if(/^(Correct|Perfect|All correct|Complete with 0 )/.test(t))return 1;if(/^Not quite/.test(t)||/\d+ wrong/.test(t))return -1;
 if(m=t.match(/^(?:You found )?(\d+) of (\d+)/))return +m[1]==+m[2]?1:/correct|mistakes/.test(t)?-1:0;return 0}
